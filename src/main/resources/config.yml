@@ -18,8 +18,17 @@ timeLimit: 20
 # Set this to 0 for no distance limit #
 distanceLimit: 40
 
-# This is the material (that is worn on head) used as the controlling item #
-mindControlHelmet: GOLDEN_HELMET
+crafting:
+   enabled: true
+   uses: 5
+   recipe:
+      materials:
+         E: 'ENDER_EYE'
+         G: 'GOLDEN_HELMET'
+      shape:
+         - '[E][E][E]'
+         - '[E][G][E]'
+         - '[][][]'
 
 entityBlacklist:
    - ARMOR_STAND

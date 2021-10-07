@@ -1,0 +1,9 @@
+item:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2730
+  type: PLAYER_HEAD
+  meta:
+    ==: ItemMeta
+    meta-type: SKULL
+    display-name: '{"text":"Mind Control Helmet"}'
+    internal: H4sIAAAAAAAA/03PTVKDMACG4ejoTEUPkw4DThddqBUINlBoCk12bQlCSLDDj0N6Aa/hIVw6nsCjeAQXsnT5zftsPgMAA9ysq17KVfOSl5Jfg3OUAQAusvc8cDLv5/Pte/X12z4ZwBjJkTddydsrMOn40PUNb40Rn03AZbKTPQcfXPuQbQuYbX150MgeN1lDGSJxvEV1ovcPyEZq7N6dvdSzf9bqdqklqekXrI76vUrg0owl9+LpQW1ecZoUwSkuAxfrkDzqcOEUVBSSCgyxywQmzyYlmyFcJAVzWclSp2LiXrEUDZREkJ6wZopVAfFVSJhgpLJQPZ3l0Xw+PgB/Ekr7+QoBAAA=

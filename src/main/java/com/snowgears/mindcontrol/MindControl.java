@@ -1,5 +1,6 @@
 package com.snowgears.mindcontrol;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -43,6 +44,32 @@ public class MindControl extends JavaPlugin {
         plugin = this;
         getServer().getPluginManager().registerEvents(controlListener, this);
 
+        File fileDirectory = new File(this.getDataFolder(), "Data");
+        if (!fileDirectory.exists()) {
+            boolean success;
+            success = (fileDirectory.mkdirs());
+            if (!success) {
+                getServer().getConsoleSender().sendMessage("[MindControl]" + ChatColor.RED + " Data folder could not be created.");
+            }
+        }
+
+        File helmetItemFile = new File(fileDirectory, "helmetItem.yml");
+        if(helmetItemFile.exists()){
+            YamlConfiguration currencyConfig = YamlConfiguration.loadConfiguration(helmetItemFile);
+            mindControlHelmet = currencyConfig.getItemStack("item");
+            mindControlHelmet.setAmount(1);
+        }
+        else{
+            try {
+                mindControlHelmet = new ItemStack(Material.GOLDEN_HELMET);
+                helmetItemFile.createNewFile();
+
+                YamlConfiguration currencyConfig = YamlConfiguration.loadConfiguration(helmetItemFile);
+                currencyConfig.set("item", mindControlHelmet);
+                currencyConfig.save(helmetItemFile);
+            } catch (Exception e) {}
+        }
+
         File configFile = new File(getDataFolder(), "config.yml");
         if (!configFile.exists()) {
             configFile.getParentFile().mkdirs();
@@ -53,15 +80,11 @@ public class MindControl extends JavaPlugin {
         usePerms = config.getBoolean("usePermissions");
         useParticles = config.getBoolean("showParticleBeam");
 
-        String sHelmet = config.getString("mindControlHelmet");
         String sParticle = config.getString("particleEffect");
         try{
             particle = Particle.valueOf(sParticle);
-            Material helmetMat = Material.valueOf(sHelmet);
-            mindControlHelmet = new ItemStack(helmetMat);
         } catch(Exception e) {
             particle = Particle.ENCHANTMENT_TABLE;
-            mindControlHelmet = new ItemStack(Material.GOLDEN_HELMET);
         }
         particleCount = config.getInt("particleCount");
         timeLimit = config.getInt("timeLimit");
@@ -159,6 +182,20 @@ public class MindControl extends JavaPlugin {
             }
             out.close();
             in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setMindControlHelmet(ItemStack helmet){
+        this.mindControlHelmet = helmet;
+
+        try {
+            File fileDirectory = new File(getDataFolder(), "Data");
+            File helmetItemFile = new File(fileDirectory, "helmetItem.yml");
+            YamlConfiguration currencyConfig = YamlConfiguration.loadConfiguration(helmetItemFile);
+            currencyConfig.set("item", plugin.getMindControlHelmet());
+            currencyConfig.save(helmetItemFile);
         } catch (Exception e) {
             e.printStackTrace();
         }
