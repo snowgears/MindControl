@@ -1,0 +1,51 @@
+# THIS FILE IS USED TO CONFIGURE WHAT MESSAGES ARE DISPLAYED #
+# ================================================================== #
+# &b : AQUA
+# &0 : BLACK
+# &9 : BLUE
+# &l : BOLD
+# &3 : DARK_AQUA
+# &1 : DARK_BLUE
+# &8 : DARK_GRAY
+# &2 : DARK_GREEN
+# &5 : DARK_PURPLE
+# &4 : DARK_RED
+# &6 : GOLD
+# &7 : GRAY
+# &a : GREEN
+# &o : ITALIC
+# &d : LIGHT_PURPLE
+# &k : MAGIC
+# &c : RED
+# &r : RESET
+# &m : STRIKETHROUGH
+# &n : UNDERLINE
+# &f : WHITE
+# &e : YELLOW
+
+# [uses] : The number of uses on the mind control helmet #
+# [max_uses] : The max number of uses on the mind control helmet #
+# [helmet_id] : The ID of the mind control helmet
+# [command] : The active command alias of the plugin
+# [player] : The name of the player
+
+message:
+   help:
+      giveSelf: "&d/[command] give <helmet_id> &7- give yourself a mind control helmet"
+      giveOther: "&d/[command] give <helmet_id> <player> &7- give player a mind control helmet"
+      reload: "&d/[command] reload &7- reload the Mind Control plugin"
+   error:
+      permCommand: "&cYou are not authorized to use this command."
+      helmetID: "&cNo mind control helmet found with id: [helmet_id]"
+      playerOnline: "&cNo player found online with name: [player]"
+      permUse: "&cYou do not have permission to use this mind control helmet."
+      permBlock: "&c[player] is immune to mind control."
+   info:
+      reload: "&2Mind Control has been reloaded."
+      giveHelmet: "&2Gave mind control helmet <[helmet_id]> to [player]"
+      getHelmet: "&2You have been given a mind control helmet <[helmet_id]>"
+      entityDeath: "&7The entity you were mind-controlling was killed."
+      playerDeath: "&7Your body was killed while you were mind-controlling."
+      distanceLimit: "&7You walked too far away from your body and lost connection"
+      timeLimit: "&7You spent too long in another beings mind and lost connection"
+      closeConnection: "&7You return to your own body gracefully."

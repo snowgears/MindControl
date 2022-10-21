@@ -1,5 +1,6 @@
 package com.snowgears.mindcontrol;
 
+import com.snowgears.mindcontrol.util.ChatMessage;
 import com.snowgears.mindcontrol.util.HelmetSettings;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -37,14 +38,16 @@ public class CommandHandler extends BukkitCommand {
 
                 //these are commands only operators have access to
                 if (player.hasPermission("mindcontrol.operator") || player.isOp()) {
-                    player.sendMessage("/"+this.getName()+" give <helmet_id> - give yourself a mind control helmet");
-                    player.sendMessage("/"+this.getName()+" give <helmet_id> <player> - give player a mind control helmet");
+                    ChatMessage.sendMessage(player, "help", "giveSelf", null, player.getName());
+                    ChatMessage.sendMessage(player, "help", "giveOther", null, player.getName());
+                    ChatMessage.sendMessage(player, "help", "reload", null, player.getName());
                     return true;
                 }
             }
             //these are commands that can be executed from the console
             else{
-                sender.sendMessage("/"+this.getName()+" give <helmet_id> <player> - give player a mind control helmet");
+                ChatMessage.sendMessageConsole(sender, "help", "giveOther", null, null);
+                ChatMessage.sendMessageConsole(sender, "help", "reload", null, null);
                 return true;
             }
         } else if (args.length == 1) {
@@ -52,14 +55,14 @@ public class CommandHandler extends BukkitCommand {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     if ((plugin.usePerms() && !player.hasPermission("mindcontrol.operator")) || (!plugin.usePerms() && !player.isOp())) {
-                        player.sendMessage(ChatColor.RED+"You are not authorized to use this command.");
+                        ChatMessage.sendMessage(player, "error", "permCommand", null, player.getName());
                         return true;
                     }
                     plugin.reload();
-                    player.sendMessage(ChatColor.GREEN+"Mind Control has been reloaded.");
+                    ChatMessage.sendMessage(player, "info", "reload", null, player.getName());
                 } else {
                     plugin.reload();
-                    sender.sendMessage("[MindControl] Reloaded plugin.");
+                    ChatMessage.sendMessageConsole(sender, "info", "reload", null, null);
                     return true;
                 }
             }
@@ -68,18 +71,23 @@ public class CommandHandler extends BukkitCommand {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     if ((plugin.usePerms() && !player.hasPermission("mindcontrol.operator")) || (!plugin.usePerms() && !player.isOp())) {
-                        player.sendMessage(ChatColor.RED+"You are not authorized to use this command.");
+                        ChatMessage.sendMessage(player, "error", "permCommand", null, player.getName());
                         return true;
                     }
 
                     String helmetID = args[1];
                     HelmetSettings helmetSettings = plugin.getPlayerHandler().getHelmetSettings(helmetID);
                     if(helmetSettings == null){
-                        player.sendMessage(ChatColor.RED+"No mind control helmet found with id: "+helmetID);
+                        String message = ChatMessage.getMessage("error", "helmetID", null, player.getName());
+                        message = message.replace("[helmet_id]", helmetID);
+                        if(message != null && !message.isEmpty()){
+                            player.sendMessage(message);
+                        }
                         return true;
                     }
                     player.getInventory().addItem(helmetSettings.getHelmetItem());
-                    player.sendMessage(ChatColor.GREEN+"Gave mind control helmet <"+helmetID+"> to "+player.getName());
+                    //player.sendMessage(ChatColor.GREEN+"Gave mind control helmet <"+helmetID+"> to "+player.getName());
+                    ChatMessage.sendMessage(player, "info", "giveHelmet", helmetSettings.getHelmetItem(), player.getName());
                     return true;
                 }
             }
@@ -89,43 +97,59 @@ public class CommandHandler extends BukkitCommand {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     if ((plugin.usePerms() && !player.hasPermission("mindcontrol.operator")) || (!plugin.usePerms() && !player.isOp())) {
-                        player.sendMessage(ChatColor.RED+"You are not authorized to use this command.");
+                        ChatMessage.sendMessage(player, "error", "permCommand", null, player.getName());
                         return true;
                     }
 
                     String helmetID = args[1];
                     HelmetSettings helmetSettings = plugin.getPlayerHandler().getHelmetSettings(helmetID);
                     if(helmetSettings == null){
-                        player.sendMessage(ChatColor.RED+"No mind control helmet found with id: "+helmetID);
+                        String message = ChatMessage.getMessage("error", "helmetID", null, player.getName());
+                        message = message.replace("[helmet_id]", helmetID);
+                        if(message != null && !message.isEmpty()){
+                            player.sendMessage(message);
+                        }
                         return true;
                     }
 
                     Player playerToGive = plugin.getServer().getPlayer(args[2]);
                     if(playerToGive == null){
-                        player.sendMessage(ChatColor.RED+"No player found online with name: "+args[2]);
+                        //player.sendMessage(ChatColor.RED+"No player found online with name: "+args[2]);
+                        ChatMessage.sendMessage(player, "error", "playerOnline", null, args[2]);
                         return true;
                     }
                     playerToGive.getInventory().addItem(helmetSettings.getHelmetItem());
-                    player.sendMessage(ChatColor.GREEN+"Gave mind control helmet <"+helmetSettings+"> to "+args[2]);
-                    playerToGive.sendMessage(ChatColor.GREEN+player.getName()+" gave you a mind control helmet <"+helmetID+">");
+//                    player.sendMessage(ChatColor.GREEN+"Gave mind control helmet <"+helmetSettings+"> to "+args[2]);
+//                    playerToGive.sendMessage(ChatColor.GREEN+player.getName()+" gave you a mind control helmet <"+helmetID+">");
+//
+                    ChatMessage.sendMessage(player, "info", "giveHelmet", helmetSettings.getHelmetItem(), playerToGive.getName());
+                    ChatMessage.sendMessage(playerToGive, "info", "getHelmet", helmetSettings.getHelmetItem(), null);
                     return true;
                 }
                 else {
                     String helmetID = args[1];
                     HelmetSettings helmetSettings = plugin.getPlayerHandler().getHelmetSettings(helmetID);
                     if(helmetSettings == null){
-                        sender.sendMessage("No mind control helmet found with id: "+helmetID);
+                        String message = ChatMessage.getMessage("error", "helmetID", null, null);
+                        message = message.replace("[helmet_id]", helmetID);
+                        if(message != null && !message.isEmpty()){
+                            message = ChatColor.stripColor(message);
+                            sender.sendMessage(message);
+                        }
                         return true;
                     }
 
                     Player playerToGive = plugin.getServer().getPlayer(args[2]);
                     if(playerToGive == null){
-                        sender.sendMessage("No player found online with name: "+args[2]);
+                        //sender.sendMessage("No player found online with name: "+args[2]);
+                        ChatMessage.sendMessageConsole(sender, "error", "playerOnline", null, args[2]);
                         return true;
                     }
                     playerToGive.getInventory().addItem(helmetSettings.getHelmetItem());
-                    sender.sendMessage("Gave mind control helmet <"+helmetID+"> to "+args[2]);
-                    playerToGive.sendMessage(ChatColor.GREEN+"The server has given you a mind control helmet <"+helmetID+">");
+                    //sender.sendMessage("Gave mind control helmet <"+helmetID+"> to "+args[2]);
+                    ChatMessage.sendMessageConsole(sender, "info", "giveHelmet", helmetSettings.getHelmetItem(), playerToGive.getName());
+                    //playerToGive.sendMessage(ChatColor.GREEN+"The server has given you a mind control helmet <"+helmetID+">");
+                    ChatMessage.sendMessage(playerToGive, "info", "getHelmet", helmetSettings.getHelmetItem(), null);
                     return true;
                 }
             }

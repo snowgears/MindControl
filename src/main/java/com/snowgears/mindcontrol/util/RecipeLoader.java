@@ -112,7 +112,6 @@ public class RecipeLoader {
                 } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
                     e.printStackTrace();
                 }
-                helmetItem.setItemMeta(helmetItemMeta);
 
                 PersistentDataContainer persistentData = helmetItemMeta.getPersistentDataContainer();
                 persistentData.set(new NamespacedKey(plugin, "uses"), PersistentDataType.INTEGER, uses);

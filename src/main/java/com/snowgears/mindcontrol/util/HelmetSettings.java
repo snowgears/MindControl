@@ -1,8 +1,13 @@
 package com.snowgears.mindcontrol.util;
 
+import com.snowgears.mindcontrol.MindControl;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -113,5 +118,17 @@ public class HelmetSettings {
 
     public boolean canControlEntityType(EntityType entityType){
         return entityTypes.containsKey(entityType);
+    }
+
+    public static HelmetSettings fromHelmetItem(ItemStack helmetItem){
+        try {
+            ItemMeta im = helmetItem.getItemMeta();
+            PersistentDataContainer persistentData = im.getPersistentDataContainer();
+
+            String helmetID = persistentData.get(new NamespacedKey(MindControl.getPlugin(), "id"), PersistentDataType.STRING);
+            return MindControl.getPlugin().getPlayerHandler().getHelmetSettings(helmetID);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

@@ -1,24 +1,19 @@
 package com.snowgears.mindcontrol;
 
+import com.snowgears.mindcontrol.util.ChatMessage;
 import com.snowgears.mindcontrol.util.ConfigUpdater;
 import com.snowgears.mindcontrol.util.RecipeLoader;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.HandlerList;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class MindControl extends JavaPlugin {
 
@@ -72,9 +67,17 @@ public class MindControl extends JavaPlugin {
         }
         recipeLoader = new RecipeLoader(plugin);
 
+        //load the chatConfig file
+        File chatConfigFile = new File(getDataFolder(), "chatConfig.yml");
+        if (!chatConfigFile.exists()) {
+            chatConfigFile.getParentFile().mkdirs();
+            copy(getResource("chatConfig.yml"), chatConfigFile);
+        }
+
         usePerms = config.getBoolean("usePermissions");
         commandAlias = config.getString("command");
 
+        new ChatMessage(this);
         commandHandler = new CommandHandler(this, "mindcontrol.operator", commandAlias, "Base command for the Mind Control plugin", "/control", new ArrayList(Arrays.asList(commandAlias)));
     }
 
