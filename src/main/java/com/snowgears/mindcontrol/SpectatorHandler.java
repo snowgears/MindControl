@@ -1,6 +1,6 @@
 package com.snowgears.mindcontrol;
 
-import org.bukkit.Bukkit;
+import com.snowgears.mindcontrol.util.ReflectionUtil;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

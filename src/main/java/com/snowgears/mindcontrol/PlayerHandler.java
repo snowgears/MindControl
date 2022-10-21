@@ -4,6 +4,8 @@ package com.snowgears.mindcontrol;
 import com.snowgears.mindcontrol.EntityData.ControllerData;
 import com.snowgears.mindcontrol.EntityData.EntityData;
 import com.snowgears.mindcontrol.EntityData.PlayerData;
+import com.snowgears.mindcontrol.util.HelmetSettings;
+import com.snowgears.mindcontrol.util.ReleaseReason;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.Disguise;
 import me.libraryaddict.disguise.disguisetypes.PlayerDisguise;
@@ -19,13 +21,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerHandler {
 
     private MindControl plugin;
+
+    private HashMap<String, HelmetSettings> helmetSettingsMap = new HashMap<>();
 
     //KEY: UUID of player controlling the entity
     //VALUE: ControllerData
@@ -122,7 +124,7 @@ public class PlayerHandler {
             toControlData.apply(player);
 
             // force controlled player to watch through controlling player's eyes
-            plugin.getSpectatorHandler().setCamera(toControl, player);
+            //plugin.getSpectatorHandler().setCamera(toControl, player);
             //TODO set variables in config: viewSelfDisguisePlayer, viewSelfDisguiseMob
             disguise.setViewSelfDisguise(false); //dont want to see other players disguise on self. Interferes too much with block placement and other things
             //TODO make simple method to check if disguise is of a player or not for other listener methods
@@ -142,36 +144,36 @@ public class PlayerHandler {
         DisguiseAPI.disguiseToAll(player, disguise);
         player.sendMessage(ChatColor.GRAY + "You take control of the "+ disguise.getType().toString().toLowerCase() +" and begin to see through its eyes.");
 
-
+        //TODO come back to this code later. This makes particle beams
         //set up repeating tasks for particle line and experience bar timer
-        if(plugin.getUseParticles()) {
-            final Location fakePlayerLoc = fakePlayer.getLocation().clone().add(0,1.8,0);
-            int taskID = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-                @Override
-                public void run() {
-                    plugin.spawnLine(fakePlayerLoc, player.getLocation().clone().add(0, 1, 0));
-                }
-            }, 0L, 10L);
-
-            playerData.setBeamTaskID(taskID);
-            controllerData.setPlayer(playerData);
-            controlMap.put(player.getUniqueId(), controllerData);
-        }
-        if(plugin.getTimeLimit() > 0){
-            player.setLevel(plugin.getTimeLimit());
-            int taskID = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-                @Override
-                public void run() {
-                    player.setLevel(player.getLevel()-1);
-                    if(player.getLevel() == 0)
-                        releaseEntity(player, ReleaseReason.TIME_LIMIT);
-                }
-            }, 20L, 20L);
-
-            playerData.setTimerTaskID(taskID);
-            controllerData.setPlayer(playerData);
-            controlMap.put(player.getUniqueId(), controllerData);
-        }
+//        if(plugin.getUseParticles()) {
+//            final Location fakePlayerLoc = fakePlayer.getLocation().clone().add(0,1.8,0);
+//            int taskID = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+//                @Override
+//                public void run() {
+//                    plugin.spawnLine(fakePlayerLoc, player.getLocation().clone().add(0, 1, 0));
+//                }
+//            }, 0L, 10L);
+//
+//            playerData.setBeamTaskID(taskID);
+//            controllerData.setPlayer(playerData);
+//            controlMap.put(player.getUniqueId(), controllerData);
+//        }
+//        if(plugin.getTimeLimit() > 0){
+//            player.setLevel(plugin.getTimeLimit());
+//            int taskID = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+//                @Override
+//                public void run() {
+//                    player.setLevel(player.getLevel()-1);
+//                    if(player.getLevel() == 0)
+//                        releaseEntity(player, ReleaseReason.TIME_LIMIT);
+//                }
+//            }, 20L, 20L);
+//
+//            playerData.setTimerTaskID(taskID);
+//            controllerData.setPlayer(playerData);
+//            controlMap.put(player.getUniqueId(), controllerData);
+//        }
     }
 
     public void releaseEntity(Player player, ReleaseReason reason){
@@ -270,5 +272,24 @@ public class PlayerHandler {
             return playerData.getFakePlayerUUID();
         }
         return null;
+    }
+
+    public HelmetSettings getHelmetSettings(String id){
+        if(helmetSettingsMap.containsKey(id))
+            return helmetSettingsMap.get(id);
+        return null;
+    }
+
+    public void addHelmetSettings(String id, HelmetSettings helmetSettings){
+        this.helmetSettingsMap.put(id, helmetSettings);
+    }
+
+    public List<String> getHelmetIDs(){
+        ArrayList<String> helmetIDs = new ArrayList<>();
+        for(String id : helmetSettingsMap.keySet()){
+            helmetIDs.add(id);
+        }
+        Collections.sort(helmetIDs);
+        return helmetIDs;
     }
 }

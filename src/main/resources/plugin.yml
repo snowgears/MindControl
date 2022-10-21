@@ -1,14 +1,10 @@
 name: MindControl
 author: SnowGears
 description: Control mobs with mind control!
-version: 1.0.1
-api-version: 1.13
+version: 1.0.2
+api-version: 1.14
 main: com.snowgears.mindcontrol.MindControl
 depend: [LibsDisguises, ProtocolLib]
-commands:
-   control:
-      description: Different commands pertaining to plugin
-      usage: /<command>
 permissions:
     mindcontrol.use:
         description: Allows player to use mind control

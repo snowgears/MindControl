@@ -1,4 +1,4 @@
-package com.snowgears.mindcontrol;
+package com.snowgears.mindcontrol.util;
 /*
  * The MIT License (MIT)
  *

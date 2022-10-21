@@ -109,6 +109,8 @@ public class PlayerData extends EntityExtraData {
             player.getInventory().setArmorContents(oldArmorContents);
             player.setGameMode(oldGameMode);
             player.setFoodLevel(this.oldHunger);
+            if(this.oldExperience < 0)
+                this.oldExperience = 0;
             player.setTotalExperience(this.oldExperience);
             livingEntity.teleport(oldLocation);
         }

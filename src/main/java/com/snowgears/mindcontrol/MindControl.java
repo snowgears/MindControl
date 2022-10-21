@@ -1,5 +1,7 @@
 package com.snowgears.mindcontrol;
 
+import com.snowgears.mindcontrol.util.ConfigUpdater;
+import com.snowgears.mindcontrol.util.RecipeLoader;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -8,15 +10,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
+import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MindControl extends JavaPlugin {
@@ -25,16 +26,12 @@ public class MindControl extends JavaPlugin {
     private YamlConfiguration config;
     private final ControlListener controlListener = new ControlListener(this);
     private PlayerHandler playerHandler = new PlayerHandler(this);
-    private SpectatorHandler spectatorHandler = new SpectatorHandler();
+    //private SpectatorHandler spectatorHandler = new SpectatorHandler();
+    private RecipeLoader recipeLoader;
+    private CommandHandler commandHandler;
 
     private boolean usePerms;
-    private ItemStack mindControlHelmet;
-    private boolean useParticles;
-    private Particle particle;
-    private int particleCount = 1;
-    private int timeLimit;
-    private int distanceLimitSquared;
-    private List<EntityType> entityBlacklist = new ArrayList<EntityType>();
+    private String commandAlias;
 
     public static MindControl getPlugin() {
         return plugin;
@@ -44,6 +41,7 @@ public class MindControl extends JavaPlugin {
         plugin = this;
         getServer().getPluginManager().registerEvents(controlListener, this);
 
+        //define our data folder and create it
         File fileDirectory = new File(this.getDataFolder(), "Data");
         if (!fileDirectory.exists()) {
             boolean success;
@@ -53,105 +51,61 @@ public class MindControl extends JavaPlugin {
             }
         }
 
-        File helmetItemFile = new File(fileDirectory, "helmetItem.yml");
-        if(helmetItemFile.exists()){
-            YamlConfiguration currencyConfig = YamlConfiguration.loadConfiguration(helmetItemFile);
-            mindControlHelmet = currencyConfig.getItemStack("item");
-            mindControlHelmet.setAmount(1);
+        //load up the config file and make sure its updated with any new variables
+        File configFile = new File(this.getDataFolder() + "config.yml");
+        if(!configFile.exists())
+        {
+            this.saveDefaultConfig();
         }
-        else{
-            try {
-                mindControlHelmet = new ItemStack(Material.GOLDEN_HELMET);
-                helmetItemFile.createNewFile();
-
-                YamlConfiguration currencyConfig = YamlConfiguration.loadConfiguration(helmetItemFile);
-                currencyConfig.set("item", mindControlHelmet);
-                currencyConfig.save(helmetItemFile);
-            } catch (Exception e) {}
-        }
-
-        File configFile = new File(getDataFolder(), "config.yml");
-        if (!configFile.exists()) {
-            configFile.getParentFile().mkdirs();
-            copy(getResource("config.yml"), configFile);
+        try {
+            ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         config = YamlConfiguration.loadConfiguration(configFile);
 
+        //load up the recipes file
+        File recipeConfigFile = new File(getDataFolder(), "recipes.yml");
+        if (!recipeConfigFile.exists()) {
+            recipeConfigFile.getParentFile().mkdirs();
+            this.copy(getResource("recipes.yml"), recipeConfigFile);
+        }
+        recipeLoader = new RecipeLoader(plugin);
+
         usePerms = config.getBoolean("usePermissions");
-        useParticles = config.getBoolean("showParticleBeam");
+        commandAlias = config.getString("command");
 
-        String sParticle = config.getString("particleEffect");
-        try{
-            particle = Particle.valueOf(sParticle);
-        } catch(Exception e) {
-            particle = Particle.ENCHANTMENT_TABLE;
-        }
-        particleCount = config.getInt("particleCount");
-        timeLimit = config.getInt("timeLimit");
-        distanceLimitSquared = config.getInt("distanceLimit");
-        distanceLimitSquared *= distanceLimitSquared;
-
-        for(String s : config.getStringList("entityBlacklist")){
-            try{
-                entityBlacklist.add(EntityType.valueOf(s));
-            } catch (Exception e) {}
-        }
+        commandHandler = new CommandHandler(this, "mindcontrol.operator", commandAlias, "Base command for the Mind Control plugin", "/control", new ArrayList(Arrays.asList(commandAlias)));
     }
 
-    public void onDisable() {
-        plugin = null;
+    public void onDisable(){
+        recipeLoader.unloadRecipes();
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(cmd.getName().equalsIgnoreCase("control") && args.length == 0){
-//            //TODO implement command for taking control of Players
-//            if(sender instanceof Player){
-//                Player player = (Player)sender;
-//                for(Entity entity : player.getNearbyEntities(5,2,5)){
-//                    if(entity instanceof LivingEntity){
-//                        this.getPlayerHandler().setCamera(player, entity);
-//                        return true;
-//                    }
-//                }
-//            }
-        }
-        return true;
+    public void reload(){
+        HandlerList.unregisterAll(controlListener);
+
+        onDisable();
+        onEnable();
     }
 
     public boolean usePerms(){
         return usePerms;
     }
 
-    public ItemStack getMindControlHelmet(){
-        return mindControlHelmet;
-    }
-
-    public boolean getUseParticles(){
-        return useParticles;
+    public String getCommandAlias() {
+        return commandAlias;
     }
 
     public PlayerHandler getPlayerHandler(){
         return playerHandler;
     }
 
-    public SpectatorHandler getSpectatorHandler(){
-        return spectatorHandler;
-    }
+//    public SpectatorHandler getSpectatorHandler(){
+//        return spectatorHandler;
+//    }
 
-    public int getTimeLimit(){
-        return timeLimit;
-    }
-
-    public int getDistanceLimitSquared(){
-        return distanceLimitSquared;
-    }
-
-    public boolean isBlacklisted(EntityType entityType){
-        return entityBlacklist.contains(entityType);
-    }
-
-    public void spawnLine(Location location, Location target) {
+    public void spawnLine(Location location, Location target, Particle particle, int particleCount) {
         int step = 0;
         int particles = 100;
         double amount = particles / 10;
@@ -182,20 +136,6 @@ public class MindControl extends JavaPlugin {
             }
             out.close();
             in.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setMindControlHelmet(ItemStack helmet){
-        this.mindControlHelmet = helmet;
-
-        try {
-            File fileDirectory = new File(getDataFolder(), "Data");
-            File helmetItemFile = new File(fileDirectory, "helmetItem.yml");
-            YamlConfiguration currencyConfig = YamlConfiguration.loadConfiguration(helmetItemFile);
-            currencyConfig.set("item", plugin.getMindControlHelmet());
-            currencyConfig.save(helmetItemFile);
         } catch (Exception e) {
             e.printStackTrace();
         }

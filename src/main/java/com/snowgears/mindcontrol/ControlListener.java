@@ -1,5 +1,7 @@
 package com.snowgears.mindcontrol;
 
+import com.snowgears.mindcontrol.util.HelmetSettings;
+import com.snowgears.mindcontrol.util.ReleaseReason;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.md_5.bungee.api.ChatColor;
@@ -17,8 +19,7 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 
 public class ControlListener implements Listener {
@@ -49,24 +50,24 @@ public class ControlListener implements Listener {
             return;
         }
 
-
-        ItemStack helmet = player.getInventory().getHelmet();
-        if(helmet != null && helmet.getType() == (plugin.getMindControlHelmet().getType())) {
-            if (event.getRightClicked() instanceof LivingEntity) {
-                if(!plugin.isBlacklisted(event.getRightClicked().getType())) {
-                   //don't allow control if its a player and they have permission to not be controlled
-                    if(event.getRightClicked() instanceof Player){
-                        Player toControl = (Player)event.getRightClicked();
-                        if((!plugin.usePerms() && toControl.isOp()) || (plugin.usePerms() && player.hasPermission("mindcontrol.immune"))){
-                            player.sendMessage(ChatColor.RED+toControl.getName()+" is immune to mind control.");
-                            return;
-                        }
-                    }
-                    plugin.getPlayerHandler().releaseEntity(player, ReleaseReason.PLAYER_CHOICE);
-                    plugin.getPlayerHandler().controlEntity(player, (LivingEntity)event.getRightClicked());
-                }
-            }
-        }
+        //TODO come back to this
+//        ItemStack helmet = player.getInventory().getHelmet();
+//        if(helmet != null && helmet.getType() == (plugin.getMindControlHelmet().getType())) {
+//            if (event.getRightClicked() instanceof LivingEntity) {
+//                if(!plugin.isBlacklisted(event.getRightClicked().getType())) {
+//                   //don't allow control if its a player and they have permission to not be controlled
+//                    if(event.getRightClicked() instanceof Player){
+//                        Player toControl = (Player)event.getRightClicked();
+//                        if((!plugin.usePerms() && toControl.isOp()) || (plugin.usePerms() && player.hasPermission("mindcontrol.immune"))){
+//                            player.sendMessage(ChatColor.RED+toControl.getName()+" is immune to mind control.");
+//                            return;
+//                        }
+//                    }
+//                    plugin.getPlayerHandler().releaseEntity(player, ReleaseReason.PLAYER_CHOICE);
+//                    plugin.getPlayerHandler().controlEntity(player, (LivingEntity)event.getRightClicked());
+//                }
+//            }
+//        }
     }
 
     @EventHandler
@@ -150,17 +151,18 @@ public class ControlListener implements Listener {
             event.setCancelled(true);
     }
 
-    @EventHandler (priority = EventPriority.HIGHEST)
-    public void onMove(PlayerMoveEvent event){
-        if(plugin.getDistanceLimitSquared() != 0) {
-            Player player = event.getPlayer();
-            if (plugin.getPlayerHandler().isControllingEntity(player)) {
-                Location fakePlayerLoc = plugin.getPlayerHandler().getOldLocation(player);
-                if (fakePlayerLoc.distanceSquared(player.getLocation()) > plugin.getDistanceLimitSquared())
-                    plugin.getPlayerHandler().releaseEntity(player, ReleaseReason.DISTANCE_LIMIT);
-            }
-        }
-    }
+    //TODO come back to this
+//    @EventHandler (priority = EventPriority.HIGHEST)
+//    public void onMove(PlayerMoveEvent event){
+//        if(plugin.getDistanceLimitSquared() != 0) {
+//            Player player = event.getPlayer();
+//            if (plugin.getPlayerHandler().isControllingEntity(player)) {
+//                Location fakePlayerLoc = plugin.getPlayerHandler().getOldLocation(player);
+//                if (fakePlayerLoc.distanceSquared(player.getLocation()) > plugin.getDistanceLimitSquared())
+//                    plugin.getPlayerHandler().releaseEntity(player, ReleaseReason.DISTANCE_LIMIT);
+//            }
+//        }
+//    }
 
     @EventHandler
     public void onHeal(EntityRegainHealthEvent event){

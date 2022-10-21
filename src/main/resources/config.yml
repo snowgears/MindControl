@@ -4,32 +4,5 @@
 # If you want to use permissions with MindControl, you must set this to true #
 usePermissions: false
 
-
-# This is the particle beam that appears when controlling an entity #
-showParticleBeam: true
-particleEffect: ENCHANTMENT_TABLE
-particleCount: 1
-
-# This is the time limit (in seconds) that enforces how long players can control an entity #
-# Set this to 0 for no time limit #
-timeLimit: 20
-
-# This is the distance (in blocks) that enforces how far players can control an entity #
-# Set this to 0 for no distance limit #
-distanceLimit: 40
-
-crafting:
-   enabled: true
-   uses: 5
-   recipe:
-      materials:
-         E: 'ENDER_EYE'
-         G: 'GOLDEN_HELMET'
-      shape:
-         - '[E][E][E]'
-         - '[E][G][E]'
-         - '[][][]'
-
-entityBlacklist:
-   - ARMOR_STAND
-   - ENDER_DRAGON
+# Change this to change the base command alias for the plugin #
+command: 'mindcontrol'
