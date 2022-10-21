@@ -4,6 +4,7 @@ package com.snowgears.mindcontrol;
 import com.snowgears.mindcontrol.EntityData.ControllerData;
 import com.snowgears.mindcontrol.EntityData.EntityData;
 import com.snowgears.mindcontrol.EntityData.PlayerData;
+import com.snowgears.mindcontrol.util.ChatMessage;
 import com.snowgears.mindcontrol.util.HelmetSettings;
 import com.snowgears.mindcontrol.util.ReleaseReason;
 import me.libraryaddict.disguise.DisguiseAPI;
@@ -142,6 +143,8 @@ public class PlayerHandler {
             entity.remove();
         }
         DisguiseAPI.disguiseToAll(player, disguise);
+
+        //TODO this will be deleted later. Just for testing now
         player.sendMessage(ChatColor.GRAY + "You take control of the "+ disguise.getType().toString().toLowerCase() +" and begin to see through its eyes.");
 
         //TODO come back to this code later. This makes particle beams
@@ -212,21 +215,21 @@ public class PlayerHandler {
 
         switch(reason){
             case PLAYER_DEATH:
-                player.sendMessage(ChatColor.GRAY+"The entity you were mind-controlling was killed.");
+                ChatMessage.sendMessage(player, "info", "entityDeath", player.getInventory().getHelmet(), player.getName());
                 break;
             case FAKEPLAYER_DEATH:
                 player.setHealth(0);
                 //TODO save playerData to file here as well, then also when player respawn event check the file
-                player.sendMessage(ChatColor.GRAY+"You were killed while focusing your mind into the entity.");
+                ChatMessage.sendMessage(player, "info", "playerDeath", player.getInventory().getHelmet(), player.getName());
                 break;
             case DISTANCE_LIMIT:
-                player.sendMessage(ChatColor.GRAY+"You were not able to focus your mind into the entity from that far away.");
+                ChatMessage.sendMessage(player, "info", "distanceLimit", player.getInventory().getHelmet(), player.getName());
                 break;
             case TIME_LIMIT:
-                player.sendMessage(ChatColor.GRAY+"Your mind got tired after mind-controlling for too long.");
+                ChatMessage.sendMessage(player, "info", "timeLimit", player.getInventory().getHelmet(), player.getName());
                 break;
             case PLAYER_CHOICE:
-                player.sendMessage(ChatColor.GRAY+"You return to your own body gracefully.");
+                ChatMessage.sendMessage(player, "info", "closeConnection", player.getInventory().getHelmet(), player.getName());
                 break;
             case DISCONNECT:
                 //TODO save playerData to file instead of returning

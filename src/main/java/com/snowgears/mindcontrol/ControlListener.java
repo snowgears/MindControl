@@ -1,5 +1,6 @@
 package com.snowgears.mindcontrol;
 
+import com.snowgears.mindcontrol.util.ChatMessage;
 import com.snowgears.mindcontrol.util.HelmetSettings;
 import com.snowgears.mindcontrol.util.ReleaseReason;
 import me.libraryaddict.disguise.DisguiseAPI;
@@ -46,7 +47,7 @@ public class ControlListener implements Listener {
         final Player player = event.getPlayer();
 
         if(plugin.usePerms() && !player.hasPermission("mindcontrol.use")){
-            player.sendMessage(ChatColor.RED+"You do not have permission to use mind control.");
+            ChatMessage.sendMessage(player, "error", "permUse", null, null);
             return;
         }
 
