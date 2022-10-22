@@ -2,7 +2,6 @@ package com.snowgears.mindcontrol.event;
 
 import com.snowgears.mindcontrol.entity.EntityData;
 import com.snowgears.mindcontrol.util.ReleaseReason;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

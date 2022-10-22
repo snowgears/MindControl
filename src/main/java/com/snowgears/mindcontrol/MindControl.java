@@ -5,8 +5,6 @@ import com.snowgears.mindcontrol.util.ConfigUpdater;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;

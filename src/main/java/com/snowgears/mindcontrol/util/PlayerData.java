@@ -6,8 +6,11 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.UUID;
 
 public class PlayerData {
@@ -17,6 +20,20 @@ public class PlayerData {
     private GameMode oldGameMode;
     private boolean allowFlight;
     private boolean isFlying;
+
+    //TODO implement all this
+    private UUID fakePlayerUUID;
+    private ItemStack[] oldInventoryContents;
+    private ItemStack[] oldArmorContents;
+    private Collection<PotionEffect> oldPotionEffects;
+    private double oldHealth;
+    private double oldMaxHealth;
+    private int oldHunger;
+    private int oldExperience;
+    private int oldRemainingAir;
+    private int oldFireTicks;
+    private int beamTaskID;
+    private int timerTaskID;
 
     public PlayerData(Player player) {
         this.playerUUID = player.getUniqueId();

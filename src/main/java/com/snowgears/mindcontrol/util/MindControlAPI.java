@@ -1,8 +1,9 @@
 package com.snowgears.mindcontrol.util;
 
 import com.snowgears.mindcontrol.MindControl;
-import com.snowgears.mindcontrol.util.HelmetSettings;
-import org.bukkit.*;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.EntityType;

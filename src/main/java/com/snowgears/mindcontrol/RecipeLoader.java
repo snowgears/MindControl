@@ -2,12 +2,10 @@ package com.snowgears.mindcontrol;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import com.snowgears.mindcontrol.MindControl;
 import com.snowgears.mindcontrol.util.HelmetSettings;
 import org.bukkit.*;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;

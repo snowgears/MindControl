@@ -2,7 +2,6 @@ package com.snowgears.mindcontrol.util;
 
 import com.snowgears.mindcontrol.MindControl;
 import org.bukkit.NamespacedKey;
-import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;

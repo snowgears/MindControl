@@ -6,24 +6,21 @@ import com.snowgears.mindcontrol.util.*;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.RayTraceResult;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Level;
 
 
@@ -58,18 +55,15 @@ public class ControlListener implements Listener {
             playersStaringAtEntities.remove(player.getUniqueId());
         }
         else if(event.getAttemptState() == AttemptState.STARE_SUCCESS){
-            Sound controlSound = MindControlAPI.getControlSound(player.getInventory().getHelmet());
-            if(controlSound != null) {
-                player.playSound(player.getLocation(), controlSound, 1, 1);
-            }
+            plugin.getPlayerHandler().controlEntity(player, event.getLivingEntity());
         }
     }
 
     @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onControlRelease(PlayerMindControlReleaseEvent event){
-        plugin.getLogger().log(Level.INFO, event.getPlayer().getName()+" released a mind control on "+event.getEntityData().getType().toString()+". ReleaseReason - "+event.getReleaseReason().toString());
+        plugin.getLogger().log(Level.INFO, event.getPlayer().getName()+" released a mind control on "+event.getEntityData().getEntityType().toString()+". ReleaseReason - "+event.getReleaseReason().toString());
 
-        //plugin.getPlayerHandler().releaseEntity(event.getPlayer(), reason);
+        plugin.getPlayerHandler().releaseEntity(event.getPlayer(), event.getReleaseReason());
     }
 
     @EventHandler
@@ -115,7 +109,8 @@ public class ControlListener implements Listener {
     }
 
     @EventHandler (priority = EventPriority.HIGHEST)
-    public void onDeath(EntityDamageEvent event){
+    public void onEntityDamage(EntityDamageEvent event){
+        System.out.println("Entity damaged. "+event.getEntity().getType().toString());
         if(event.getEntity() instanceof Player) {
             Player player = (Player)event.getEntity();
             if (plugin.getPlayerHandler().isControllingEntity(player)) {
@@ -149,6 +144,7 @@ public class ControlListener implements Listener {
             plugin.getPlayerHandler().releaseEntity(player, ReleaseReason.FAKEPLAYER_DEATH);
             player.setHealth(0);
         }
+        System.out.println("Entity death event. "+event.getEntity().getType().toString());
     }
 
     @EventHandler
@@ -274,12 +270,4 @@ public class ControlListener implements Listener {
         }
         return true;
     }
-
-    private void createBossBar(Player player){
-        BossBar bar = Bukkit.createBossBar("Focusing Mind Control", BarColor.PURPLE, BarStyle.SOLID);
-        bar.setProgress(100);
-        bar.addPlayer(player);
-        bar.setVisible(true);
-    }
-
 }

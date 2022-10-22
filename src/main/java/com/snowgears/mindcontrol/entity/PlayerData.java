@@ -12,7 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import java.util.Collection;
 import java.util.UUID;
 
-public class PlayerData extends EntityExtraData {
+public class PlayerData {
 
     private UUID playerUUID;
     private UUID fakePlayerUUID;
@@ -96,7 +96,6 @@ public class PlayerData extends EntityExtraData {
         return playerData;
     }
 
-    @Override
     //this method is called when the player data is returned to the controlling player
     public void apply(Entity entity) {
         if (!(entity instanceof LivingEntity)) return;
@@ -118,10 +117,11 @@ public class PlayerData extends EntityExtraData {
         Bukkit.getServer().getScheduler().cancelTask(beamTaskID);
         Bukkit.getServer().getScheduler().cancelTask(timerTaskID);
 
-        livingEntity.setMaxHealth(this.oldMaxHealth);
-        livingEntity.setHealth(this.oldHealth);
-        livingEntity.setRemainingAir(this.oldRemainingAir);
-        livingEntity.setFireTicks(this.oldFireTicks);
+        //TODO come back to this
+//        livingEntity.setMaxHealth(this.oldMaxHealth);
+//        livingEntity.setHealth(this.oldHealth);
+//        livingEntity.setRemainingAir(this.oldRemainingAir);
+//        livingEntity.setFireTicks(this.oldFireTicks);
 
         for(PotionEffect effect : oldPotionEffects) {
             livingEntity.addPotionEffect(effect);
