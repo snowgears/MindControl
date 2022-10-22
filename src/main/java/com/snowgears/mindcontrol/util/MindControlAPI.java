@@ -3,6 +3,8 @@ package com.snowgears.mindcontrol.util;
 import com.snowgears.mindcontrol.MindControl;
 import com.snowgears.mindcontrol.util.HelmetSettings;
 import org.bukkit.*;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -100,6 +102,23 @@ public final class MindControlAPI {
 
 		return helmetSettings.getControlSound();
 	}
+
+	public static BarColor getProgressBarColor(ItemStack helmetItem){
+		HelmetSettings helmetSettings = HelmetSettings.fromHelmetItem(helmetItem);
+		if(helmetSettings == null)
+			return null;
+
+		return helmetSettings.getProgressBarColor();
+	}
+
+	public static BarStyle getProgressBarStyle(ItemStack helmetItem){
+		HelmetSettings helmetSettings = HelmetSettings.fromHelmetItem(helmetItem);
+		if(helmetSettings == null)
+			return null;
+
+		return helmetSettings.getProgressBarStyle();
+	}
+
 
 	public static String getHelmetID(ItemStack helmetItem){
 

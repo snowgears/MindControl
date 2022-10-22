@@ -45,12 +45,12 @@ recipes:
     distanceLimit: 40
     timeLimit: 20
     timeBetweenUses: 0
-    particle:
-      type: 'ENCHANTMENT_TABLE'
-      count: 1
     sound:
       stare: 'ENTITY_ENDERMAN_STARE'
       control: 'ENTITY_ENDERMAN_TELEPORT'
+    progressBar:
+      color: 'PURPLE'
+      style: 'SOLID'
     recipe:
       materials:
         E: 'ENDER_EYE'
@@ -77,12 +77,12 @@ recipes:
     distanceLimit: 40
     timeLimit: 20
     timeBetweenUses: 0
-    particle:
-      type: 'ENCHANTMENT_TABLE'
-      count: 1
     sound:
       stare: 'ENTITY_ENDERMAN_STARE'
       control: 'ENTITY_ENDERMAN_TELEPORT'
+    progressBar:
+      color: 'PINK'
+      style: 'SOLID'
     recipe:
       materials:
         P: 'PORKCHOP'
@@ -111,12 +111,12 @@ recipes:
     distanceLimit: 40
     timeLimit: 20
     timeBetweenUses: 0
-    particle:
-      type: 'ENCHANTMENT_TABLE'
-      count: 1
     sound:
       stare: 'ENTITY_ENDERMAN_STARE'
       control: 'ENTITY_ENDERMAN_TELEPORT'
+    progressBar:
+      color: 'WHITE'
+      style: 'SOLID'
     recipe:
       materials:
         B: 'BEEF'
@@ -142,12 +142,12 @@ recipes:
     distanceLimit: 60
     timeLimit: 30
     timeBetweenUses: 0
-    particle:
-      type: 'ENCHANTMENT_TABLE'
-      count: 1
     sound:
       stare: 'ENTITY_ENDERMAN_STARE'
       control: 'ENTITY_ENDERMAN_TELEPORT'
+    progressBar:
+      color: 'PURPLE'
+      style: 'SOLID'
     recipe:
       materials:
         E: 'ENDER_EYE'

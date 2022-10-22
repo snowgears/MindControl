@@ -29,9 +29,6 @@ public class MindControl extends JavaPlugin {
     private boolean usePerms;
     private String commandAlias;
 
-    private BarColor progressBarColor;
-    private BarStyle progressBarStyle;
-
     public static MindControl getPlugin() {
         return plugin;
     }
@@ -80,16 +77,6 @@ public class MindControl extends JavaPlugin {
 
         usePerms = config.getBoolean("usePermissions");
         commandAlias = config.getString("command");
-        try {
-            progressBarColor = BarColor.valueOf(config.getString("progressBar.color"));
-        } catch (IllegalArgumentException e) {
-            progressBarColor = BarColor.PURPLE;
-        }
-        try {
-            progressBarStyle = BarStyle.valueOf(config.getString("progressBar.style"));
-        } catch (IllegalArgumentException e) {
-            progressBarStyle = BarStyle.SOLID;
-        }
 
         new ChatMessage(this);
         commandHandler = new CommandHandler(this, "mindcontrol.operator", commandAlias, "Base command for the Mind Control plugin", "/control", new ArrayList(Arrays.asList(commandAlias)));
@@ -112,14 +99,6 @@ public class MindControl extends JavaPlugin {
 
     public String getCommandAlias() {
         return commandAlias;
-    }
-
-    public BarColor getProgressBarColor() {
-        return progressBarColor;
-    }
-
-    public BarStyle getProgressBarStyle() {
-        return progressBarStyle;
     }
 
     public PlayerHandler getPlayerHandler(){

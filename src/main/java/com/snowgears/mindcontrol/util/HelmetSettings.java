@@ -4,6 +4,8 @@ import com.snowgears.mindcontrol.MindControl;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -24,11 +26,11 @@ public class HelmetSettings {
     private int timeLimit;
     private int timeBetweenUses;
 
-    private Particle particle;
-    private int particleCount;
-
     private Sound stareSound;
     private Sound controlSound;
+
+    private BarColor progressBarColor;
+    private BarStyle progressBarStyle;
 
     private ItemStack helmetItem;
 
@@ -40,10 +42,10 @@ public class HelmetSettings {
                           int distanceLimit,
                           int timeLimit,
                           int timeBetweenUses,
-                          Particle particle,
-                          int particleCount,
                           Sound stareSound,
-                          Sound controlSound){
+                          Sound controlSound,
+                          BarColor progressBarColor,
+                          BarStyle progressBarStyle){
 
         this.id = id;
         this.maxUses = maxUses;
@@ -51,10 +53,10 @@ public class HelmetSettings {
         this.distanceLimit = distanceLimit;
         this.timeLimit = timeLimit;
         this.timeBetweenUses = timeBetweenUses;
-        this.particle = particle;
-        this.particleCount = particleCount;
         this.stareSound = stareSound;
         this.controlSound = controlSound;
+        this.progressBarColor = progressBarColor;
+        this.progressBarStyle = progressBarStyle;
     }
 
     public void setEntityList(boolean isBlackList, List<EntityType> entityTypeList){
@@ -116,20 +118,20 @@ public class HelmetSettings {
         return timeBetweenUses;
     }
 
-    public Particle getParticle() {
-        return particle;
-    }
-
-    public int getParticleCount() {
-        return particleCount;
-    }
-
     public Sound getStareSound() {
         return stareSound;
     }
 
     public Sound getControlSound() {
         return controlSound;
+    }
+
+    public BarColor getProgressBarColor() {
+        return progressBarColor;
+    }
+
+    public BarStyle getProgressBarStyle() {
+        return progressBarStyle;
     }
 
     public boolean canControlEntityType(EntityType entityType){

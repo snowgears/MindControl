@@ -5,6 +5,9 @@ import com.mojang.authlib.properties.Property;
 import com.snowgears.mindcontrol.MindControl;
 import com.snowgears.mindcontrol.util.HelmetSettings;
 import org.bukkit.*;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
@@ -59,16 +62,6 @@ public class RecipeLoader {
                 int timeLimit = config.getInt("recipes." + recipeNumber + ".timeLimit");
                 int timeBetweenUses = config.getInt("recipes." + recipeNumber + ".timeBetweenUses");
 
-                String particleString = config.getString("recipes." + recipeNumber + ".particle.type");
-                Particle particle;
-                try {
-                    particle = Particle.valueOf(particleString);
-                } catch (IllegalArgumentException e) {
-                    plugin.getLogger().log(Level.WARNING, "unrecognized particle type in recipe "+recipeNumber+": "+particleString);
-                    particle = Particle.ENCHANTMENT_TABLE;
-                }
-                int particleCount = config.getInt("recipes." + recipeNumber + ".particle.count");
-
                 String stareSoundString = config.getString("recipes." + recipeNumber + ".sound.stare");
                 Sound stareSound = null;
                 try {
@@ -84,7 +77,22 @@ public class RecipeLoader {
                     plugin.getLogger().log(Level.WARNING, "unrecognized sound in recipe "+recipeNumber+": "+controlSoundString);
                 }
 
-                HelmetSettings helmetSettings = new HelmetSettings(id, uses, captureTime, distanceLimit, timeLimit, timeBetweenUses, particle, particleCount, stareSound, controlSound);
+                String progressBarColorString = config.getString("recipes." + recipeNumber + ".progressBar.color");
+                BarColor progressBarColor;
+                try {
+                    progressBarColor = BarColor.valueOf(progressBarColorString);
+                } catch (IllegalArgumentException e) {
+                    progressBarColor = BarColor.PURPLE;
+                }
+                String progressBarStyleString = config.getString("recipes." + recipeNumber + ".progressBar.style");
+                BarStyle progressBarStyle;
+                try {
+                    progressBarStyle = BarStyle.valueOf(progressBarStyleString);
+                } catch (IllegalArgumentException e) {
+                    progressBarStyle = BarStyle.SOLID;
+                }
+
+                HelmetSettings helmetSettings = new HelmetSettings(id, uses, captureTime, distanceLimit, timeLimit, timeBetweenUses, stareSound, controlSound, progressBarColor, progressBarStyle);
 
                 try {
                     boolean isBlackList = false;

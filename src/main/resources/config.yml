@@ -7,8 +7,3 @@ usePermissions: false
 
 # Change this to change the base command alias for the plugin #
 command: 'mindcontrol'
-
-# Change the style of the progress bar when players are focusing on entities #
-progressBar:
-  color: 'PURPLE'
-  style: 'SOLID'

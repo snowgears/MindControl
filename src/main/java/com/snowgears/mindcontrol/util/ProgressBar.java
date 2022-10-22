@@ -4,6 +4,8 @@ import com.snowgears.mindcontrol.MindControl;
 import com.snowgears.mindcontrol.event.PlayerMindControlAttemptEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -114,7 +116,10 @@ public class ProgressBar {
 
     private void createBossBar(Player player){
         String title = ChatMessage.getMessage("progressBar", "noEntity", player.getInventory().getHelmet(), player.getName());
-        bossBar =  Bukkit.createBossBar(title, MindControl.getPlugin().getProgressBarColor(), MindControl.getPlugin().getProgressBarStyle());
+        BarColor color = MindControlAPI.getProgressBarColor(player.getInventory().getHelmet());
+        BarStyle style = MindControlAPI.getProgressBarStyle(player.getInventory().getHelmet());
+
+        bossBar =  Bukkit.createBossBar(title, color, style);
         bossBar.setProgress(0);
         bossBar.addPlayer(player);
         startTime = Long.MAX_VALUE;
