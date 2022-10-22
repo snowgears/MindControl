@@ -59,7 +59,6 @@ public class RecipeLoader {
                 int timeLimit = config.getInt("recipes." + recipeNumber + ".timeLimit");
                 int timeBetweenUses = config.getInt("recipes." + recipeNumber + ".timeBetweenUses");
 
-                boolean particleEnabled = config.getBoolean("recipes." + recipeNumber + ".particle.enabled");
                 String particleString = config.getString("recipes." + recipeNumber + ".particle.type");
                 Particle particle;
                 try {
@@ -70,7 +69,22 @@ public class RecipeLoader {
                 }
                 int particleCount = config.getInt("recipes." + recipeNumber + ".particle.count");
 
-                HelmetSettings helmetSettings = new HelmetSettings(id, uses, captureTime, distanceLimit, timeLimit, timeBetweenUses, particleEnabled, particle, particleCount);
+                String stareSoundString = config.getString("recipes." + recipeNumber + ".sound.stare");
+                Sound stareSound = null;
+                try {
+                    stareSound = Sound.valueOf(stareSoundString);
+                } catch (IllegalArgumentException e) {
+                    plugin.getLogger().log(Level.WARNING, "unrecognized sound in recipe "+recipeNumber+": "+stareSoundString);
+                }
+                String controlSoundString = config.getString("recipes." + recipeNumber + ".sound.control");
+                Sound controlSound = null;
+                try {
+                    controlSound = Sound.valueOf(controlSoundString);
+                } catch (IllegalArgumentException e) {
+                    plugin.getLogger().log(Level.WARNING, "unrecognized sound in recipe "+recipeNumber+": "+controlSoundString);
+                }
+
+                HelmetSettings helmetSettings = new HelmetSettings(id, uses, captureTime, distanceLimit, timeLimit, timeBetweenUses, particle, particleCount, stareSound, controlSound);
 
                 try {
                     boolean isBlackList = false;

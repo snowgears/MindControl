@@ -85,6 +85,22 @@ public final class MindControlAPI {
 		return helmetSettings.canControlEntityType(entityType);
 	}
 
+	public static Sound getStareSound(ItemStack helmetItem){
+		HelmetSettings helmetSettings = HelmetSettings.fromHelmetItem(helmetItem);
+		if(helmetSettings == null)
+			return null;
+
+		return helmetSettings.getStareSound();
+	}
+
+	public static Sound getControlSound(ItemStack helmetItem){
+		HelmetSettings helmetSettings = HelmetSettings.fromHelmetItem(helmetItem);
+		if(helmetSettings == null)
+			return null;
+
+		return helmetSettings.getControlSound();
+	}
+
 	public static String getHelmetID(ItemStack helmetItem){
 
 		HelmetSettings helmetSettings = HelmetSettings.fromHelmetItem(helmetItem);

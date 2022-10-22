@@ -3,6 +3,7 @@ package com.snowgears.mindcontrol.util;
 import com.snowgears.mindcontrol.MindControl;
 import com.snowgears.mindcontrol.event.PlayerMindControlAttemptEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -48,6 +49,10 @@ public class ProgressBar {
                         setAttemptState(AttemptState.STARE_SUCCESS);
                         return;
                     }
+                    Sound stareSound = MindControlAPI.getStareSound(player.getInventory().getHelmet());
+                    if(stareSound != null) {
+                        player.playSound(player.getLocation(), stareSound, 1, 1);
+                    }
                 }
 
                 int distanceLimit = MindControlAPI.getDistanceLimit(player);
@@ -71,7 +76,12 @@ public class ProgressBar {
                     return;
                 }
                 if(entityStaringAt == null){
-                    setAttemptState(AttemptState.STARE_START);
+                    if(MindControlAPI.canControlEntityType(player, hitEntity.getType())){
+                        setAttemptState(AttemptState.STARE_START);
+                    }
+                    else{
+                        return;
+                    }
                 }
                 entityStaringAt = (LivingEntity) hitEntity;
                 setTitleEntityFocus();
@@ -94,6 +104,11 @@ public class ProgressBar {
 
         if(task != null){
             task.cancel();
+        }
+
+        Sound stareSound = MindControlAPI.getStareSound(player.getInventory().getHelmet());
+        if(stareSound != null) {
+            player.stopSound(stareSound);
         }
     }
 
@@ -138,6 +153,11 @@ public class ProgressBar {
                 break;
         }
         this.attemptState = attemptState;
+
+        Sound stareSound = MindControlAPI.getStareSound(player.getInventory().getHelmet());
+        if(stareSound != null) {
+            player.stopSound(stareSound);
+        }
     }
 
     private void setTitleEntityFocus() {

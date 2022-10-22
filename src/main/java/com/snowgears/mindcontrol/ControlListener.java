@@ -6,6 +6,7 @@ import com.snowgears.mindcontrol.util.*;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
@@ -55,6 +56,12 @@ public class ControlListener implements Listener {
             ProgressBar progressBar = playersStaringAtEntities.get(player.getUniqueId());
             progressBar.destroy();
             playersStaringAtEntities.remove(player.getUniqueId());
+        }
+        else if(event.getAttemptState() == AttemptState.STARE_SUCCESS){
+            Sound controlSound = MindControlAPI.getControlSound(player.getInventory().getHelmet());
+            if(controlSound != null) {
+                player.playSound(player.getLocation(), controlSound, 1, 1);
+            }
         }
     }
 
