@@ -1,5 +1,6 @@
-package com.snowgears.mindcontrol;
+package com.snowgears.mindcontrol.util;
 
+import com.snowgears.mindcontrol.MindControl;
 import com.snowgears.mindcontrol.util.HelmetSettings;
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
@@ -13,6 +14,11 @@ public final class MindControlAPI {
 	
 	public static boolean isMindControlHelmet(ItemStack is) {
 		HelmetSettings helmetSettings = HelmetSettings.fromHelmetItem(is);
+		return helmetSettings != null;
+	}
+
+	public static boolean isWearingMindControlHelmet(Player player) {
+		HelmetSettings helmetSettings = HelmetSettings.fromHelmetItem(player.getInventory().getHelmet());
 		return helmetSettings != null;
 	}
 
@@ -47,12 +53,28 @@ public final class MindControlAPI {
 		return helmetSettings.getMaxUses();
 	}
 
+	public static double getCaptureTime(ItemStack helmetItem){
+		HelmetSettings helmetSettings = HelmetSettings.fromHelmetItem(helmetItem);
+		if(helmetSettings == null)
+			return 0;
+
+		return helmetSettings.getCaptureTime();
+	}
+
 	public static int getTimeBetweenUses(Player player){
 
 		HelmetSettings helmetSettings = getHelmetSettings(player);
 		if(helmetSettings == null)
 			return 0;
 		return helmetSettings.getTimeBetweenUses();
+	}
+
+	public static int getDistanceLimit(Player player){
+
+		HelmetSettings helmetSettings = getHelmetSettings(player);
+		if(helmetSettings == null)
+			return 0;
+		return helmetSettings.getDistanceLimit();
 	}
 
 	public static boolean canControlEntityType(Player player, EntityType entityType){

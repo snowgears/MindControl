@@ -1,7 +1,6 @@
 package com.snowgears.mindcontrol.util;
 
 import com.snowgears.mindcontrol.MindControl;
-import com.snowgears.mindcontrol.MindControlAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -9,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -19,7 +19,17 @@ public class ChatMessage {
 
     public ChatMessage(MindControl plugin) {
 
+        //load up the chat config file and make sure its updated with any new variables
         File chatConfigFile = new File(plugin.getDataFolder(), "chatConfig.yml");
+        if (!chatConfigFile.exists()) {
+            chatConfigFile.getParentFile().mkdirs();
+            plugin.copy(plugin.getResource("chatConfig.yml"), chatConfigFile);
+        }
+        try {
+            ConfigUpdater.update(plugin, "chatConfig.yml", chatConfigFile, new ArrayList<>());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         chatConfig = YamlConfiguration.loadConfiguration(chatConfigFile);
 
         loadMessagesFromConfig();

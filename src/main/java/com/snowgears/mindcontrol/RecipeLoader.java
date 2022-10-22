@@ -1,8 +1,9 @@
-package com.snowgears.mindcontrol.util;
+package com.snowgears.mindcontrol;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.snowgears.mindcontrol.MindControl;
+import com.snowgears.mindcontrol.util.HelmetSettings;
 import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
@@ -53,6 +54,7 @@ public class RecipeLoader {
                 }
                 String headTextureID = config.getString("recipes." + recipeNumber + ".headTextureID");
                 int uses = config.getInt("recipes." + recipeNumber + ".uses");
+                double captureTime = config.getDouble("recipes." + recipeNumber + ".captureTime");
                 int distanceLimit = config.getInt("recipes." + recipeNumber + ".distanceLimit");
                 int timeLimit = config.getInt("recipes." + recipeNumber + ".timeLimit");
                 int timeBetweenUses = config.getInt("recipes." + recipeNumber + ".timeBetweenUses");
@@ -68,7 +70,7 @@ public class RecipeLoader {
                 }
                 int particleCount = config.getInt("recipes." + recipeNumber + ".particle.count");
 
-                HelmetSettings helmetSettings = new HelmetSettings(id, uses, distanceLimit, timeLimit, timeBetweenUses, particleEnabled, particle, particleCount);
+                HelmetSettings helmetSettings = new HelmetSettings(id, uses, captureTime, distanceLimit, timeLimit, timeBetweenUses, particleEnabled, particle, particleCount);
 
                 try {
                     boolean isBlackList = false;

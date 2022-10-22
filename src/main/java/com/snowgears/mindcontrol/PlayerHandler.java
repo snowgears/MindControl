@@ -1,9 +1,9 @@
 package com.snowgears.mindcontrol;
 
 
-import com.snowgears.mindcontrol.EntityData.ControllerData;
-import com.snowgears.mindcontrol.EntityData.EntityData;
-import com.snowgears.mindcontrol.EntityData.PlayerData;
+import com.snowgears.mindcontrol.entity.ControllerData;
+import com.snowgears.mindcontrol.entity.EntityData;
+import com.snowgears.mindcontrol.entity.PlayerData;
 import com.snowgears.mindcontrol.util.ChatMessage;
 import com.snowgears.mindcontrol.util.HelmetSettings;
 import com.snowgears.mindcontrol.util.ReleaseReason;
@@ -251,10 +251,18 @@ public class PlayerHandler {
         return null;
     }
 
-    public UUID getControlledEntity(Player player){
+    public UUID getControlledEntityUUID(Player player){
         if(controlMap.containsKey(player.getUniqueId())){
             ControllerData controllerData = controlMap.get(player.getUniqueId());
             return controllerData.getEntity().getUniqueID();
+        }
+        return null;
+    }
+
+    public EntityData getControlledEntityData(Player player){
+        if(controlMap.containsKey(player.getUniqueId())){
+            ControllerData controllerData = controlMap.get(player.getUniqueId());
+            return controllerData.getEntity();
         }
         return null;
     }

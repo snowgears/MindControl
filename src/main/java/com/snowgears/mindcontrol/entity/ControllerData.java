@@ -1,4 +1,4 @@
-package com.snowgears.mindcontrol.EntityData;
+package com.snowgears.mindcontrol.entity;
 
 public class ControllerData {
 

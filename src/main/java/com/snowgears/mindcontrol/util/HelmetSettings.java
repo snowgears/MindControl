@@ -18,6 +18,7 @@ public class HelmetSettings {
     private String id;
     private int maxUses;
 
+    private double captureTime;
     private int distanceLimit;
     private int timeLimit;
     private int timeBetweenUses;
@@ -32,6 +33,7 @@ public class HelmetSettings {
 
     public HelmetSettings(String id,
                           int maxUses,
+                          double captureTime,
                           int distanceLimit,
                           int timeLimit,
                           int timeBetweenUses,
@@ -41,6 +43,7 @@ public class HelmetSettings {
 
         this.id = id;
         this.maxUses = maxUses;
+        this.captureTime = captureTime;
         this.distanceLimit = distanceLimit;
         this.timeLimit = timeLimit;
         this.timeBetweenUses = timeBetweenUses;
@@ -90,6 +93,10 @@ public class HelmetSettings {
 
     public int getMaxUses(){
         return maxUses;
+    }
+
+    public double getCaptureTime(){
+        return captureTime;
     }
 
     public int getDistanceLimit() {

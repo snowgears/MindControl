@@ -23,11 +23,15 @@
 # &f : WHITE
 # &e : YELLOW
 
+# These variables are only available to use when applicable to the situation #
 # [uses] : The number of uses on the mind control helmet #
 # [max_uses] : The max number of uses on the mind control helmet #
-# [helmet_id] : The ID of the mind control helmet
-# [command] : The active command alias of the plugin
-# [player] : The name of the player
+# [helmet_id] : The ID of the mind control helmet #
+# [player] : The name of the player #
+# [entity_type] : The active entity type #
+
+# These variables are available globally #
+# [command] : The active command alias of the plugin #
 
 message:
    help:
@@ -49,3 +53,6 @@ message:
       distanceLimit: "&7You walked too far away from your body and lost connection"
       timeLimit: "&7You spent too long in another beings mind and lost connection"
       closeConnection: "&7You return to your own body gracefully."
+   progressBar:
+      noEntity: "Focus on an entity"
+      entity: "Focusing on [entity_type]"

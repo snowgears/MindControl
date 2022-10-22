@@ -1,13 +1,14 @@
 package com.snowgears.mindcontrol;
 
-import com.snowgears.mindcontrol.util.ChatMessage;
-import com.snowgears.mindcontrol.util.HelmetSettings;
-import com.snowgears.mindcontrol.util.ReleaseReason;
+import com.snowgears.mindcontrol.event.PlayerMindControlAttemptEvent;
+import com.snowgears.mindcontrol.event.PlayerMindControlReleaseEvent;
+import com.snowgears.mindcontrol.util.*;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -18,9 +19,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.RayTraceResult;
 
 import java.util.*;
+import java.util.logging.Level;
 
 
 public class ControlListener implements Listener {
@@ -28,12 +31,40 @@ public class ControlListener implements Listener {
     public MindControl plugin = MindControl.getPlugin();
 
     private HashMap<UUID, Integer> timesSneaked = new HashMap<>();
+    private HashMap<UUID, ProgressBar> playersStaringAtEntities = new HashMap<>();
 
     public ControlListener(MindControl instance) {
         plugin = instance;
     }
 
-    //this method calls PlayerCreateShopEvent
+    @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onControlAttempt(PlayerMindControlAttemptEvent event){
+        Player player = event.getPlayer();
+
+        plugin.getLogger().log(Level.INFO, event.getPlayer().getName()+" attempted a mind control");
+        if(event.getLivingEntity() != null) {
+            plugin.getLogger().log(Level.INFO, event.getLivingEntity().getType().toString());
+        }
+        plugin.getLogger().log(Level.INFO, "AttemptState - "+event.getAttemptState().toString());
+
+        if(event.getAttemptState() == AttemptState.FOCUS_START) {
+            ProgressBar progressBar = new ProgressBar(player);
+            playersStaringAtEntities.put(player.getUniqueId(), progressBar);
+        }
+        else if(event.getAttemptState() == AttemptState.FOCUS_END){
+            ProgressBar progressBar = playersStaringAtEntities.get(player.getUniqueId());
+            progressBar.destroy();
+            playersStaringAtEntities.remove(player.getUniqueId());
+        }
+    }
+
+    @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onControlRelease(PlayerMindControlReleaseEvent event){
+        plugin.getLogger().log(Level.INFO, event.getPlayer().getName()+" released a mind control on "+event.getEntityData().getType().toString()+". ReleaseReason - "+event.getReleaseReason().toString());
+
+        //plugin.getPlayerHandler().releaseEntity(event.getPlayer(), reason);
+    }
+
     @EventHandler
     public void onInteractEntity(PlayerInteractEntityEvent event) {
         if (event.isCancelled()) {
@@ -125,7 +156,11 @@ public class ControlListener implements Listener {
                 times++;
 
                 if (times == 2) {
-                    plugin.getPlayerHandler().releaseEntity(event.getPlayer(), ReleaseReason.PLAYER_CHOICE);
+
+                    //call a new mind control release event
+                    PlayerMindControlReleaseEvent releaseEvent = new PlayerMindControlReleaseEvent(player, plugin.getPlayerHandler().getControlledEntityData(player), ReleaseReason.PLAYER_CHOICE);
+                    Bukkit.getPluginManager().callEvent(releaseEvent);
+
                     if (timesSneaked.containsKey(player.getUniqueId())) {
                         timesSneaked.remove(player.getUniqueId());
                     }
@@ -141,6 +176,18 @@ public class ControlListener implements Listener {
                         }
                     }
                 }, 10L);
+            }
+        }
+        else if(MindControlAPI.isWearingMindControlHelmet(player) && event.isSneaking()){
+
+            PlayerMindControlAttemptEvent startFocusEvent = new PlayerMindControlAttemptEvent(player, null, AttemptState.FOCUS_START);
+            Bukkit.getPluginManager().callEvent(startFocusEvent);
+        }
+        else{
+            if(playersStaringAtEntities.containsKey(player.getUniqueId())){
+
+                PlayerMindControlAttemptEvent startFocusEvent = new PlayerMindControlAttemptEvent(player, null, AttemptState.FOCUS_END);
+                Bukkit.getPluginManager().callEvent(startFocusEvent);
             }
         }
     }
@@ -200,7 +247,7 @@ public class ControlListener implements Listener {
                 }
             }
             // dont cancel event if the controlled entity is a player
-            UUID controlledEntity = plugin.getPlayerHandler().getControlledEntity(player);
+            UUID controlledEntity = plugin.getPlayerHandler().getControlledEntityUUID(player);
             if(controlledEntity != null && Bukkit.getPlayer(controlledEntity) != null)
                 return;
             //cancel event if it wasn't retargeted
@@ -220,4 +267,12 @@ public class ControlListener implements Listener {
         }
         return true;
     }
+
+    private void createBossBar(Player player){
+        BossBar bar = Bukkit.createBossBar("Focusing Mind Control", BarColor.PURPLE, BarStyle.SOLID);
+        bar.setProgress(100);
+        bar.addPlayer(player);
+        bar.setVisible(true);
+    }
+
 }

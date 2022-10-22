@@ -86,7 +86,6 @@ public class CommandHandler extends BukkitCommand {
                         return true;
                     }
                     player.getInventory().addItem(helmetSettings.getHelmetItem());
-                    //player.sendMessage(ChatColor.GREEN+"Gave mind control helmet <"+helmetID+"> to "+player.getName());
                     ChatMessage.sendMessage(player, "info", "giveHelmet", helmetSettings.getHelmetItem(), player.getName());
                     return true;
                 }
@@ -114,14 +113,11 @@ public class CommandHandler extends BukkitCommand {
 
                     Player playerToGive = plugin.getServer().getPlayer(args[2]);
                     if(playerToGive == null){
-                        //player.sendMessage(ChatColor.RED+"No player found online with name: "+args[2]);
                         ChatMessage.sendMessage(player, "error", "playerOnline", null, args[2]);
                         return true;
                     }
                     playerToGive.getInventory().addItem(helmetSettings.getHelmetItem());
-//                    player.sendMessage(ChatColor.GREEN+"Gave mind control helmet <"+helmetSettings+"> to "+args[2]);
-//                    playerToGive.sendMessage(ChatColor.GREEN+player.getName()+" gave you a mind control helmet <"+helmetID+">");
-//
+
                     ChatMessage.sendMessage(player, "info", "giveHelmet", helmetSettings.getHelmetItem(), playerToGive.getName());
                     ChatMessage.sendMessage(playerToGive, "info", "getHelmet", helmetSettings.getHelmetItem(), null);
                     return true;
@@ -141,14 +137,11 @@ public class CommandHandler extends BukkitCommand {
 
                     Player playerToGive = plugin.getServer().getPlayer(args[2]);
                     if(playerToGive == null){
-                        //sender.sendMessage("No player found online with name: "+args[2]);
                         ChatMessage.sendMessageConsole(sender, "error", "playerOnline", null, args[2]);
                         return true;
                     }
                     playerToGive.getInventory().addItem(helmetSettings.getHelmetItem());
-                    //sender.sendMessage("Gave mind control helmet <"+helmetID+"> to "+args[2]);
                     ChatMessage.sendMessageConsole(sender, "info", "giveHelmet", helmetSettings.getHelmetItem(), playerToGive.getName());
-                    //playerToGive.sendMessage(ChatColor.GREEN+"The server has given you a mind control helmet <"+helmetID+">");
                     ChatMessage.sendMessage(playerToGive, "info", "getHelmet", helmetSettings.getHelmetItem(), null);
                     return true;
                 }
