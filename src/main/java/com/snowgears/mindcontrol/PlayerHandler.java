@@ -170,6 +170,13 @@ public class PlayerHandler {
             player.setGameMode(GameMode.ADVENTURE);
             player.getInventory().clear();
 
+            //TODO just test code
+            if(entity.getType() == EntityType.BLAZE){
+                player.setAllowFlight(true);
+                player.setFlying(true);
+                //player.setFlySpeed(1);
+            }
+
             entityData.capture(fakePlayer);
             player.teleport(entityData.getOldLocation());
         }
@@ -181,6 +188,11 @@ public class PlayerHandler {
         if(controlSound != null) {
             player.playSound(entityData.getOldLocation(), controlSound, 1, 1);
         }
+
+        //running this packet on a timer while player is inside of another entity should prevent them from sprinting
+//        PacketPlayOutUpdateHealth test;
+//        test=new PacketPlayOutUpdateHealth((float)player.getHealth(), 2, player.getSaturation());
+//        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(test);
 
         //TODO this will be deleted later. Just for testing now
         player.sendMessage(ChatColor.GRAY + "You take control of the "+ disguise.getType().toString().toLowerCase() +" and begin to see through its eyes.");
@@ -269,6 +281,14 @@ public class PlayerHandler {
         }
 
         playerData.apply(player);
+
+        //TODO this will be moved to PlayerData. Just a test line
+        if(type == EntityType.BLAZE){
+            player.setAllowFlight(false);
+            player.setFlying(false);
+            //player.setFlySpeed(1);
+        }
+
         //TODO apply fakePlayer data to real player (health, fireticks, air, new items, etc...)
         DisguiseAPI.undisguiseToAll(player);
         controlMap.remove(player.getUniqueId());
