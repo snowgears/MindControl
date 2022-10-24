@@ -1,0 +1,236 @@
+# Thanks for downloading Mind Control! #
+# IF YOU HAVE A QUESTION COME JOIN MY DISCORD: https://discord.gg/GpSwEWS #
+
+# &b : AQUA
+# &0 : BLACK
+# &9 : BLUE
+# &l : BOLD
+# &3 : DARK_AQUA
+# &1 : DARK_BLUE
+# &8 : DARK_GRAY
+# &2 : DARK_GREEN
+# &5 : DARK_PURPLE
+# &4 : DARK_RED
+# &6 : GOLD
+# &7 : GRAY
+# &a : GREEN
+# &o : ITALIC
+# &d : LIGHT_PURPLE
+# &k : MAGIC
+# &c : RED
+# &r : RESET
+# &m : STRIKETHROUGH
+# &n : UNDERLINE
+# &f : WHITE
+# &e : YELLOW
+
+# timeLimit - this is the time limit (in seconds) that enforces how long players can control an entity (set to 0 for no limit) #
+# distanceLimit - this is the distance (in blocks) that enforces how far players can control an entity (set to 0 for no limit) #
+# timeBetweenUses - this is the time (in seconds) between when the item is used and when it can be used again (set to 0 for no limit) #
+# captureTime - this is the time (in seconds) that a player must sneak and stare at an entity to control it (set to 0 for instant) #
+
+# [uses] - tag that will display the uses left on the mind control helmet #
+recipes:
+  1:
+    enabled: true
+    id: 'standard_mind_helmet'
+    name: '&6Mind Control Helmet'
+    lore:
+      - '&7Allows you to control the minds of entities'
+      - '&7(Sneak while wearing)'
+      - '&7Uses left - &a[uses]'
+    headTextureID: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWVhNzRiNGMyOTEyODFhYjhlYjM0MGZjMTg3YTUxODVhZGZiZWFkZjBmZWIxYTQ0YzMyZmZkNTJmOTZjZTk5In19fQ=='
+    uses: 10
+    captureTime: 3
+    distanceLimit: 40
+    timeLimit: 20
+    timeBetweenUses: 0
+    sound:
+      stare: 'ENTITY_ENDERMAN_STARE'
+      control: 'ENTITY_ENDERMAN_TELEPORT'
+    progressBar:
+      color: 'PURPLE'
+      style: 'SOLID'
+    recipe:
+      materials:
+        E: 'ENDER_EYE'
+        G: 'GOLDEN_HELMET'
+      shape:
+        - '[E][E][E]'
+        - '[E][G][E]'
+        - '[][][]'
+    entity:
+      listType: 'BLACKLIST'
+      list:
+        - ''
+  2:
+    enabled: true
+    id: 'pig_mind_helmet'
+    name: '&6Pig Control Helmet'
+    lore:
+      - '&7Control the minds of pigs'
+      - '&7(Sneak while wearing)'
+      - '&7Uses left - &a[uses]'
+    headTextureID: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzkzMmY1ZGIxZGMwY2Y2ZGM1N2RjZmE2MDM5YmNlZjliYzE0YmFkM2RlNGI0MTJmMTI5M2ZhNzUyZTc0MTFkNyJ9fX0='
+    uses: 10
+    captureTime: 2
+    distanceLimit: 40
+    timeLimit: 20
+    timeBetweenUses: 0
+    sound:
+      stare: 'ENTITY_ENDERMAN_STARE'
+      control: 'ENTITY_ENDERMAN_TELEPORT'
+    progressBar:
+      color: 'PINK'
+      style: 'SOLID'
+    recipe:
+      materials:
+        P: 'PORKCHOP'
+        G: 'GOLDEN_HELMET'
+      shape:
+        - '[P][P][P]'
+        - '[P][G][P]'
+        - '[][][]'
+    entity:
+      listType: 'WHITELIST'
+      list:
+        - 'PIG'
+        - 'PIGLIN'
+        - 'PIGLIN_BRUTE'
+  3:
+    enabled: true
+    id: 'cow_mind_helmet'
+    name: '&6Cow Control Helmet'
+    lore:
+      - '&7Control the minds of cows'
+      - '&7(Sneak while wearing)'
+      - '&7Uses left - &a[uses]'
+    headTextureID: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjU3OTU3NzEwYmZkOTBkZWU5N2ZkNWVmMmE5MTYyMWZkNDZhNjUzY2FjMDUzYjVmNWE3ZTY4NGRjNWI2NzUxMSJ9fX0='
+    uses: 10
+    captureTime: 2
+    distanceLimit: 40
+    timeLimit: 20
+    timeBetweenUses: 0
+    sound:
+      stare: 'ENTITY_ENDERMAN_STARE'
+      control: 'ENTITY_ENDERMAN_TELEPORT'
+    progressBar:
+      color: 'WHITE'
+      style: 'SOLID'
+    recipe:
+      materials:
+        B: 'BEEF'
+        G: 'GOLDEN_HELMET'
+      shape:
+        - '[B][B][B]'
+        - '[B][G][B]'
+        - '[][][]'
+    entity:
+      listType: 'WHITELIST'
+      list:
+        - 'COW'
+  4:
+    enabled: false
+    id: 'example_mind_helmet'
+    name: '&6Mind Control Helmet'
+    lore:
+      - '&7Allows you to control the minds of entities'
+      - '&7Uses left - &a[uses]'
+    headTextureID: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWVhNzRiNGMyOTEyODFhYjhlYjM0MGZjMTg3YTUxODVhZGZiZWFkZjBmZWIxYTQ0YzMyZmZkNTJmOTZjZTk5In19fQ=='
+    uses: 20
+    captureTime: 3
+    distanceLimit: 60
+    timeLimit: 30
+    timeBetweenUses: 0
+    sound:
+      stare: 'ENTITY_ENDERMAN_STARE'
+      control: 'ENTITY_ENDERMAN_TELEPORT'
+    progressBar:
+      color: 'PURPLE'
+      style: 'SOLID'
+    recipe:
+      materials:
+        E: 'ENDER_EYE'
+        D: 'DIAMOND_HELMET'
+      shape:
+        - '[E][E][E]'
+        - '[E][D][E]'
+        - '[][][]'
+    entity:
+      listType: 'WHITELIST'
+      list:
+        - 'AXOLOTL'
+        - 'BAT'
+        - 'BEE'
+        - 'BLAZE'
+        - 'CAT'
+        - 'CAVE_SPIDER'
+        - 'CHICKEN'
+        - 'COD'
+        - 'COW'
+        - 'CREEPER'
+        - 'DOLPHIN'
+        - 'DONKEY'
+        - 'DROWNED'
+        - 'ELDER_GUARDIAN'
+        - 'ENDERMAN'
+        - 'ENDERMITE'
+        - 'ENDER_DRAGON'
+        - 'EVOKER'
+        - 'FOX'
+        - 'GHAST'
+        - 'GIANT'
+        - 'GLOW_SQUID'
+        - 'GOAT'
+        - 'GUARDIAN'
+        - 'HOGLIN'
+        - 'HORSE'
+        - 'HUSK'
+        - 'ILLUSIONER'
+        - 'IRON_GOLEM'
+        - 'LLAMA'
+        - 'MAGMA_CUBE'
+        - 'MULE'
+        - 'MUSHROOM_COW'
+        - 'OCELOT'
+        - 'PANDA'
+        - 'PARROT'
+        - 'PHANTOM'
+        - 'PIG'
+        - 'PIGLIN'
+        - 'PIGLIN_BRUTE'
+        - 'PILLAGER'
+        - 'PLAYER'
+        - 'POLAR_BEAR'
+        - 'PUFFERFISH'
+        - 'RABBIT'
+        - 'RAVAGER'
+        - 'SALMON'
+        - 'SHEEP'
+        - 'SHULKER'
+        - 'SILVERFISH'
+        - 'SKELETON'
+        - 'SKELETON_HORSE'
+        - 'SLIME'
+        - 'SNOWMAN'
+        - 'SPIDER'
+        - 'SQUID'
+        - 'STRAY'
+        - 'STRIDER'
+        - 'TRADER_LLAMA'
+        - 'TROPICAL_FISH'
+        - 'TURTLE'
+        - 'VEX'
+        - 'VILLAGER'
+        - 'VINDICATOR'
+        - 'WANDERING_TRADER'
+        - 'WITCH'
+        - 'WITHER'
+        - 'WITHER_SKELETON'
+        - 'WOLF'
+        - 'ZOGLIN'
+        - 'ZOMBIE'
+        - 'ZOMBIE_HORSE'
+        - 'ZOMBIE_VILLAGER'
+        - 'ZOMBIFIED_PIGLIN'
+
