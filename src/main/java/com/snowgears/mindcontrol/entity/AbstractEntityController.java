@@ -1,18 +1,18 @@
-package com.snowgears.mindcontrol;
+package com.snowgears.mindcontrol.entity;
 
-
-import com.snowgears.mindcontrol.entity.ControllerData;
-import com.snowgears.mindcontrol.entity.EntityData;
-import com.snowgears.mindcontrol.entity.PlayerData;
+import com.snowgears.mindcontrol.MindControl;
 import com.snowgears.mindcontrol.util.ChatMessage;
-import com.snowgears.mindcontrol.util.HelmetSettings;
+import com.snowgears.mindcontrol.util.EntityControlSettings;
 import com.snowgears.mindcontrol.util.MindControlAPI;
 import com.snowgears.mindcontrol.util.ReleaseReason;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.Disguise;
 import me.libraryaddict.disguise.disguisetypes.PlayerDisguise;
 import me.libraryaddict.disguise.disguisetypes.watchers.PlayerWatcher;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.EntityType;
@@ -21,78 +21,81 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.*;
+public abstract class AbstractEntityController {
 
-public class PlayerHandler {
+    protected Player player;
+    protected LivingEntity livingEntity;
+    protected PlayerData playerData;
+    protected EntityData entityData;
 
-    private MindControl plugin;
+    protected EntityControlSettings entityControlSettings;
 
-    private HashMap<String, HelmetSettings> helmetSettingsMap = new HashMap<>();
+    public static AbstractEntityController create(Player player, LivingEntity livingEntity) {
 
-    //KEY: UUID of player controlling the entity
-    //VALUE: ControllerData
-    //   - PlayerData: The saved previous state of the player controlling the entity
-    //   - EntityData: The saved previous state of the entity that is being controlled
-    private HashMap<UUID, ControllerData> controlMap = new HashMap<>();
-
-    public PlayerHandler(MindControl plugin){
-        this.plugin = plugin;
+        switch(livingEntity.getType()){
+            case BLAZE:
+                return new BlazeEntityController(player, livingEntity);
+            case CREEPER:
+                return new CreeperEntityController(player, livingEntity);
+            default:
+                return new GenericEntityController(player, livingEntity);
+        }
     }
 
-    //TODO give all mobs (except players) their own spawn eggs (that can't be dropped or used) that do special abilities
-    //prevent sprinting from all of these and maybe make walk speed slightly slower
-    //all special ability items will also play the mob sound in the world
-    //bat - can fly
-    //chicken - can slow fall
-    //cow - nothing
-    //mooshroom - creates patch of mushrooms around it
-    //pig - pick up/kick off passenger
-    //rabbit - nothing
-    //sheep - nothing
-    //horse/donkey/mule/skeleton-horse - pick up/kick off passenger
-    //squid - breath underwater + swim faster
-    //villager(non-zombie) - same actions as player (place blocks)
-    //cave spider/spider - climb walls (check if your wallclimb plugin still works in 1.10)
-    //enderman - teleport
-    //polar bear - drop fish on ground if standing in water (cooldown on this)
-    //zombie pigman - gold sword that doesn't break
-    //creeper - explode
-    //gaurdian - shoot stuff?
-    //endermite - nothing?
-    //husk/zombie - burn in sunlight
-    //magma cube/slime - cut down size + spawn other cubes around it
-    //shulker - no ideas yet
-    //silverfish - nothing?
-    //skeleton/stray/wither skeleton - bow with infinite arrows (cooldown on shots?)
-    //witch - throw potions
-    //ocelot - jump 3 blocks high
-    //wolf - run faster?
-    //iron golem - super strength + knockback
-    //snow golem - coat ground in snow + throw snowballs
+    public AbstractEntityController(Player player, LivingEntity livingEntity){
+        this.player = player;
+        this.livingEntity = livingEntity;
 
-    //blaze - fly and shoot fireballs (cooldown + delay?)
-    //ghast - fly and shoot fireballs (cooldown + delay?)
-    //ender dragon - fly + blow fireballs (cooldown)
-    //wither skeleton - fly and shoot fireballs (cooldown + delay)
+        this.playerData = new PlayerData(player);
+        this.entityData = new EntityData(livingEntity);
+        this.entityControlSettings = MindControl.getPlugin().getPlayerHandler().getEntityControlSettings(livingEntity.getType());
 
-
-
-
-
-    public boolean isControllingEntity(Player player){
-        return controlMap.containsKey(player.getUniqueId());
+        controlEntity(player, livingEntity);
     }
 
-    public void controlEntity(final Player player, LivingEntity entity){
-        if(controlMap.containsKey(player.getUniqueId()))
-            return;
+    public boolean doAction(){
+        if(entityControlSettings != null && entityControlSettings.isActionEnabled()){
+            Sound actionSound = entityControlSettings.getActionSound();
+            if(player != null && actionSound != null){
+                player.getWorld().playSound(player.getLocation(), actionSound, 1, 1);
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public boolean doAttack(){
+        if(entityControlSettings != null && entityControlSettings.isAttackEnabled()){
+            Sound attackSound = entityControlSettings.getAttackSound();
+            if(player != null && attackSound != null){
+                player.getWorld().playSound(player.getLocation(), attackSound, 1, 1);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // The saved previous state of the player controlling the entity
+    public PlayerData getPlayer(){
+        return playerData;
+    }
+
+    // The saved previous state of the entity that is being controlled
+    public EntityData getEntity(){
+        return entityData;
+    }
+
+    public void setPlayer(PlayerData playerData){
+        this.playerData = playerData;
+    }
+
+    public void setEntity(EntityData entityData){
+        this.entityData = entityData;
+    }
+
+    private void controlEntity(final Player player, LivingEntity entity){
         Sound stareSound = MindControlAPI.getStareSound(player.getInventory().getHelmet());
         Sound controlSound = MindControlAPI.getControlSound(player.getInventory().getHelmet());
-
-        //save current states of both the player and the entity to be controlled
-        PlayerData playerData = new PlayerData(player);
-        EntityData entityData = new EntityData(entity);
 
         //construct a player disguise that will be put on the fake player
         Disguise disguise = DisguiseAPI.constructDisguise(entity);
@@ -109,24 +112,50 @@ public class PlayerHandler {
 
             //fake player will get all real player's attributes
             AttributeInstance fakePlayerAttributeInstance = fakePlayer.getAttribute(attribute);
-            if(fakePlayerAttributeInstance != null) {
+            if (fakePlayerAttributeInstance != null) {
                 AttributeInstance playerAttributeInstance = player.getAttribute(attribute);
-                if(playerAttributeInstance != null) {
+                if (playerAttributeInstance != null) {
                     fakePlayerAttributeInstance.setBaseValue(playerAttributeInstance.getValue());
                 }
             }
+        }
+//
+//            //real player will get all entity's attributes
+//            AttributeInstance playerAttributeInstance = player.getAttribute(attribute);
+//            if(playerAttributeInstance != null) {
+//                AttributeInstance entityAttributeInstance = entity.getAttribute(attribute);
+//                if(entityAttributeInstance != null) {
+//                    playerAttributeInstance.setBaseValue(entityAttributeInstance.getValue());
+//                }
+//            }
+//        }
 
-            //real player will get all entity's attributes
-            AttributeInstance playerAttributeInstance = player.getAttribute(attribute);
-            if(playerAttributeInstance != null) {
-                AttributeInstance entityAttributeInstance = entity.getAttribute(attribute);
-                if(entityAttributeInstance != null) {
-                    playerAttributeInstance.setBaseValue(entityAttributeInstance.getValue());
-                }
+        if(entityControlSettings != null) {
+            AttributeInstance playerSpeedInstance = player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
+            if (playerSpeedInstance != null) {
+                playerSpeedInstance.setBaseValue(entityControlSettings.getSpeed());
+            }
+
+            AttributeInstance playerAttackDamageInstance = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+            if (playerAttackDamageInstance != null) {
+                playerAttackDamageInstance.setBaseValue(entityControlSettings.getAttackDamage());
+            }
+
+            if(entityControlSettings.isFly()){
+                player.setAllowFlight(true);
+                player.setFlying(true);
+                player.setFlySpeed((float)entityControlSettings.getSpeed());
+            }
+            else{
+                player.setAllowFlight(false);
+                player.setFlying(false);
             }
         }
 
-        fakePlayer.setHealth(player.getHealth());
+
+
+
+        fakePlayer.setHealth(playerData.getHealth());
         fakePlayer.setRemainingAir(player.getRemainingAir());
         fakePlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 5));
         fakePlayer.setSilent(true);
@@ -139,8 +168,8 @@ public class PlayerHandler {
         //add the fake player uuid to the player data (so the fake player can be removed later)
         playerData.setFakePlayerUUID(fakePlayer.getUniqueId());
         //put all of this data into the control map
-        ControllerData controllerData = new ControllerData(playerData, entityData);
-        controlMap.put(player.getUniqueId(), controllerData);
+//        EntityController controllerData = new EntityController(playerData, entityData);
+//        controlMap.put(player.getUniqueId(), controllerData);
 
         //if the player is attempting to control another player
         if(entity instanceof Player){
@@ -197,45 +226,10 @@ public class PlayerHandler {
         //TODO this will be deleted later. Just for testing now
         player.sendMessage(ChatColor.GRAY + "You take control of the "+ disguise.getType().toString().toLowerCase() +" and begin to see through its eyes.");
 
-        //TODO come back to this code later. This makes particle beams
-        //set up repeating tasks for particle line and experience bar timer
-//        if(plugin.getUseParticles()) {
-//            final Location fakePlayerLoc = fakePlayer.getLocation().clone().add(0,1.8,0);
-//            int taskID = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-//                @Override
-//                public void run() {
-//                    plugin.spawnLine(fakePlayerLoc, player.getLocation().clone().add(0, 1, 0));
-//                }
-//            }, 0L, 10L);
-//
-//            playerData.setBeamTaskID(taskID);
-//            controllerData.setPlayer(playerData);
-//            controlMap.put(player.getUniqueId(), controllerData);
-//        }
-//        if(plugin.getTimeLimit() > 0){
-//            player.setLevel(plugin.getTimeLimit());
-//            int taskID = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-//                @Override
-//                public void run() {
-//                    player.setLevel(player.getLevel()-1);
-//                    if(player.getLevel() == 0)
-//                        releaseEntity(player, ReleaseReason.TIME_LIMIT);
-//                }
-//            }, 20L, 20L);
-//
-//            playerData.setTimerTaskID(taskID);
-//            controllerData.setPlayer(playerData);
-//            controlMap.put(player.getUniqueId(), controllerData);
-//        }
     }
 
     public void releaseEntity(Player player, ReleaseReason reason){
-        if(!controlMap.containsKey(player.getUniqueId()))
-            return;
 
-        ControllerData controllerData = controlMap.get(player.getUniqueId());
-        PlayerData playerData = controllerData.getPlayer();
-        EntityData entityData = controllerData.getEntity();
         entityData.setReleaseLocation(player.getLocation().clone().add(0, 0.1, 0));
 
         Disguise disguise = DisguiseAPI.getDisguise(player);
@@ -291,67 +285,5 @@ public class PlayerHandler {
 
         //TODO apply fakePlayer data to real player (health, fireticks, air, new items, etc...)
         DisguiseAPI.undisguiseToAll(player);
-        controlMap.remove(player.getUniqueId());
-    }
-
-    public Location getOldLocation(Player player){
-        if(controlMap.containsKey(player.getUniqueId())){
-            ControllerData controllerData = controlMap.get(player.getUniqueId());
-            return controllerData.getPlayer().getOldLocation();
-        }
-        return null;
-    }
-
-    public UUID getControlledEntityUUID(Player player){
-        if(controlMap.containsKey(player.getUniqueId())){
-            ControllerData controllerData = controlMap.get(player.getUniqueId());
-            return controllerData.getEntity().getUniqueID();
-        }
-        return null;
-    }
-
-    public EntityData getControlledEntityData(Player player){
-        if(controlMap.containsKey(player.getUniqueId())){
-            ControllerData controllerData = controlMap.get(player.getUniqueId());
-            return controllerData.getEntity();
-        }
-        return null;
-    }
-
-    public Player getControllingPlayer(LivingEntity fakePlayer){
-        for(Map.Entry<UUID, ControllerData> entry : controlMap.entrySet()) {
-            PlayerData playerData = entry.getValue().getPlayer();
-            if (fakePlayer.getUniqueId().equals(playerData.getFakePlayerUUID())) {
-                return plugin.getServer().getPlayer(playerData.getUUID());
-            }
-        }
-        return null;
-    }
-
-    public UUID getFakePlayer(Player realPlayer){
-        if(isControllingEntity(realPlayer)){
-            PlayerData playerData = controlMap.get(realPlayer.getUniqueId()).getPlayer();
-            return playerData.getFakePlayerUUID();
-        }
-        return null;
-    }
-
-    public HelmetSettings getHelmetSettings(String id){
-        if(helmetSettingsMap.containsKey(id))
-            return helmetSettingsMap.get(id);
-        return null;
-    }
-
-    public void addHelmetSettings(String id, HelmetSettings helmetSettings){
-        this.helmetSettingsMap.put(id, helmetSettings);
-    }
-
-    public List<String> getHelmetIDs(){
-        ArrayList<String> helmetIDs = new ArrayList<>();
-        for(String id : helmetSettingsMap.keySet()){
-            helmetIDs.add(id);
-        }
-        Collections.sort(helmetIDs);
-        return helmetIDs;
     }
 }

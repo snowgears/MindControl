@@ -3,7 +3,8 @@ package com.snowgears.mindcontrol.entity;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -27,8 +28,14 @@ public class PlayerData {
     private int oldExperience;
     private int oldRemainingAir;
     private int oldFireTicks;
-    private int beamTaskID;
     private int timerTaskID;
+
+    private double oldMovementSpeed;
+    private double oldAttackDamage;
+
+    private boolean oldAllowFlight;
+    private boolean oldIsFlying;
+    private float oldFlySpeed;
 
     public PlayerData(Player player) {
         //TODO handle saving and loading from file here
@@ -38,12 +45,28 @@ public class PlayerData {
         this.oldLocation = player.getLocation().clone();
         this.oldGameMode = player.getGameMode();
         this.oldHealth = player.getHealth();
-        this.oldMaxHealth = player.getMaxHealth();
         this.oldHunger = player.getFoodLevel();
         this.oldExperience = player.getTotalExperience();
         this.oldRemainingAir = player.getRemainingAir();
         this.oldFireTicks = player.getFireTicks();
         this.oldPotionEffects = player.getActivePotionEffects();
+
+        AttributeInstance playerMaxHealthInstance = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        if(playerMaxHealthInstance != null){
+            this.oldMaxHealth = playerMaxHealthInstance.getBaseValue();
+        }
+        AttributeInstance playerSpeedInstance = player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
+        if(playerSpeedInstance != null){
+            this.oldMovementSpeed = playerSpeedInstance.getBaseValue();
+        }
+        AttributeInstance playerAttackDamageInstance = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+        if (playerAttackDamageInstance != null) {
+            this.oldAttackDamage = playerAttackDamageInstance.getBaseValue();
+        }
+
+        this.oldAllowFlight = player.getAllowFlight();
+        this.oldIsFlying = player.isFlying();
+        this.oldFlySpeed = player.getFlySpeed();
     }
 
     public UUID getUUID(){
@@ -66,18 +89,6 @@ public class PlayerData {
         return oldArmorContents;
     }
 
-    public void setBeamTaskID(int beamTaskID){
-        this.beamTaskID = beamTaskID;
-    }
-
-//    public int getBeamTaskID(){
-//        return beamTaskID;
-//    }
-//
-//    public int getTimerTaskID(){
-//        return timerTaskID;
-//    }
-
     public void setTimerTaskID(int timerTaskID){
         this.timerTaskID = timerTaskID;
     }
@@ -91,16 +102,12 @@ public class PlayerData {
     public PlayerData clone(){
         PlayerData playerData = new PlayerData(Bukkit.getPlayer(this.playerUUID));
         playerData.setFakePlayerUUID(this.getFakePlayerUUID());
-        playerData.setBeamTaskID(this.beamTaskID);
         playerData.setTimerTaskID(this.timerTaskID);
         return playerData;
     }
 
     //this method is called when the player data is returned to the controlling player
-    public void apply(Entity entity) {
-        if (!(entity instanceof LivingEntity)) return;
-        LivingEntity livingEntity = (LivingEntity) entity;
-
+    public void apply(LivingEntity livingEntity) {
         if(livingEntity instanceof Player){
             Player player = (Player)livingEntity;
 
@@ -111,10 +118,15 @@ public class PlayerData {
             if(this.oldExperience < 0)
                 this.oldExperience = 0;
             player.setTotalExperience(this.oldExperience);
-            livingEntity.teleport(oldLocation);
+
+            player.setAllowFlight(oldAllowFlight);
+            player.setFlying(oldIsFlying);
+            player.setFlySpeed(oldFlySpeed);
+
+            player.setArrowsInBody(0);
+            player.teleport(oldLocation);
         }
 
-        Bukkit.getServer().getScheduler().cancelTask(beamTaskID);
         Bukkit.getServer().getScheduler().cancelTask(timerTaskID);
 
         //TODO come back to this
@@ -123,8 +135,27 @@ public class PlayerData {
 //        livingEntity.setRemainingAir(this.oldRemainingAir);
 //        livingEntity.setFireTicks(this.oldFireTicks);
 
+        AttributeInstance playerMaxHealthInstance = livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        if(playerMaxHealthInstance != null){
+            playerMaxHealthInstance.setBaseValue(oldMaxHealth);
+        }
+        AttributeInstance playerSpeedInstance = livingEntity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
+        if(playerSpeedInstance != null){
+            playerSpeedInstance.setBaseValue(oldMovementSpeed);
+        }
+        AttributeInstance playerAttackDamageInstance = livingEntity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+        if (playerAttackDamageInstance != null) {
+            playerAttackDamageInstance.setBaseValue(oldAttackDamage);
+        }
+
+        livingEntity.setHealth(this.oldHealth);
+
         for(PotionEffect effect : oldPotionEffects) {
             livingEntity.addPotionEffect(effect);
         }
+    }
+
+    public double getHealth(){
+        return oldHealth;
     }
 }

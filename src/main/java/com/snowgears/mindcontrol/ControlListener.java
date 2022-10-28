@@ -1,23 +1,21 @@
 package com.snowgears.mindcontrol;
 
+import com.snowgears.mindcontrol.entity.AbstractEntityController;
 import com.snowgears.mindcontrol.event.PlayerMindControlAttemptEvent;
 import com.snowgears.mindcontrol.event.PlayerMindControlReleaseEvent;
 import com.snowgears.mindcontrol.util.*;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.*;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.HashMap;
@@ -68,6 +66,22 @@ public class ControlListener implements Listener {
     }
 
     @EventHandler
+    public void onInteract(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+        if (plugin.getPlayerHandler().isControllingEntity(player)) {
+            AbstractEntityController entityController = plugin.getPlayerHandler().getEntityController(player);
+            if(entityController != null){
+                if(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK){
+                    entityController.doAttack();
+                }
+                else if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK){
+                    entityController.doAction();
+                }
+            }
+        }
+    }
+
+    @EventHandler
     public void onInteractEntity(PlayerInteractEntityEvent event) {
         if (event.isCancelled()) {
             return;
@@ -111,10 +125,11 @@ public class ControlListener implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onEntityDamage(EntityDamageEvent event){
-        System.out.println("Entity damaged. "+event.getEntity().getType().toString());
+        //System.out.println("Entity damaged. "+event.getEntity().getType().toString());
         if(event.getEntity() instanceof Player) {
             Player player = (Player)event.getEntity();
             if (plugin.getPlayerHandler().isControllingEntity(player)) {
+                player.setArrowsInBody(0);
                 if((player.getHealth() - event.getFinalDamage() <= 0)) {
                     event.setCancelled(true);
                     plugin.getPlayerHandler().releaseEntity(player, ReleaseReason.PLAYER_DEATH);

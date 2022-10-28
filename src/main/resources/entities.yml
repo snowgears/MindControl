@@ -1,359 +1,937 @@
-# Thanks for downloading Mind Control! #
-# IF YOU HAVE A QUESTION COME JOIN MY DISCORD: https://discord.gg/GpSwEWS #
-
 entities:
+  ALLAY:
+    speed: 0.1
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM'
+    attack:
+      enabled: false
+      sound: 'ENTITY_ALLAY_HURT'
+      damage: 0
   AXOLOTL:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: false
-    interact:
+    suffocate: false
+    action:
       enabled: true
       sound: 'ENTITY_AXOLOTL_IDLE_AIR'
     attack:
       enabled: true
-      damage: 2
       sound: 'ENTITY_AXOLOTL_ATTACK'
+      damage: 2
   BAT:
-    speed: 0.5
+    speed: 0.1
     fly: true
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
       sound: 'ENTITY_BAT_AMBIENT'
     attack:
       enabled: false
-      damage: 2
       sound: 'ENTITY_BAT_HURT'
+      damage: 0
   BEE:
-    speed: 0.5
+    speed: 0.1
     fly: true
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_BEE_LOOP'
     attack:
-      enabled: false
+      enabled: true
+      sound: 'ENTITY_BEE_STING'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   BLAZE:
-    speed: 0.5
+    speed: 0.1
     fly: true
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_BLAZE_AMBIENT'
     attack:
-      enabled: false
-      damage: 2
-      sound: 'ENTITY_BAT_HURT'
+      enabled: true
+      sound: 'ENTITY_BLAZE_SHOOT'
+      damage: 4
   CAT:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_CAT_AMBIENT'
     attack:
-      enabled: false
+      enabled: true
+      sound: 'ENTITY_CAT_HISS'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   CAVE_SPIDER:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_SPIDER_AMBIENT'
     attack:
-      enabled: false
+      enabled: true
+      sound: 'ENTITY_SPIDER_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   CHICKEN:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_CHICKEN_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_CHICKEN_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   COD:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: false
-    interact:
+    suffocate: true
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_COD_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_COD_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   COW:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_COW_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_COW_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   CREEPER:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_CREEPER_PRIMED'
     attack:
-      enabled: false
-      damage: 2
-      sound: 'ENTITY_BAT_HURT'
+      enabled: true
+      sound: 'ENTITY_CREEPER_DEATH'
+      damage: 10
   DOLPHIN:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: false
-    interact:
+    suffocate: true
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_DOLPHIN_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_DOLPHIN_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   DONKEY:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_DONKEY_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_DONKEY_ANGRY'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   DROWNED:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: false
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_DROWNED_AMBIENT'
     attack:
-      enabled: false
+      enabled: true
+      sound: 'ENTITY_DROWNED_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   ELDER_GUARDIAN:
-    speed: 0.5
-    fly: true
+    speed: 0.1
+    fly: false
     drown: false
-    interact:
+    suffocate: true
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_ELDER_GUARDIAN_AMBIENT'
     attack:
-      enabled: false
+      enabled: true
+      sound: 'ENTITY_ELDER_GUARDIAN_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   ENDERMAN:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_ENDERMAN_TELEPORT'
     attack:
-      enabled: false
+      enabled: true
+      sound: 'ENTITY_ENDERMAN_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   ENDERMITE:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_ENDERMITE_AMBIENT'
     attack:
-      enabled: false
+      enabled: true
+      sound: 'ENTITY_ENDERMITE_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   ENDER_DRAGON:
-    speed: 0.5
+    speed: 0.1
     fly: true
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_ENDER_DRAGON_AMBIENT'
     attack:
-      enabled: false
-      damage: 2
-      sound: 'ENTITY_BAT_HURT'
+      enabled: true
+      sound: 'ENTITY_ENDER_DRAGON_SHOOT'
+      damage: 5
   EVOKER:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_EVOKER_AMBIENT'
     attack:
-      enabled: false
+      enabled: true
+      sound: 'ENTITY_EVOKER_FANGS_ATTACK'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   FOX:
-    speed: 0.5
+    speed: 0.1
     fly: false
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_FOX_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_FOX_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
-  GHAST:
-    speed: 0.5
-    fly: true
-    drown: true
-    interact:
-      enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
-    attack:
-      enabled: false
-      damage: 2
-      sound: 'ENTITY_BAT_HURT'
-  GIANT:
-    speed: 0.5
-    fly: false
-    drown: true
-    interact:
-      enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
-    attack:
-      enabled: false
-      damage: 2
-      sound: 'ENTITY_BAT_HURT'
-  GLOW_SQUID:
-    speed: 0.5
+  FROG:
+    speed: 0.1
     fly: false
     drown: false
-    interact:
+    suffocate: true
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_FROG_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_FROG_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
   GHAST:
-    speed: 0.5
+    speed: 0.1
     fly: true
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_GHAST_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_GHAST_SHOOT'
+      damage: 2
+  GIANT:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_PLAYER_BURP'
+    attack:
+      enabled: true
+      sound: 'ENTITY_PLAYER_ATTACK_STRONG'
+      damage: 5
+  GLOW_SQUID:
+    speed: 0.1
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: 'ENTITY_GLOW_SQUID_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_GLOW_SQUID_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
-  GHAST:
-    speed: 0.5
+  GOAT:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_GOAT_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_GOAT_RAM_IMPACT'
+      damage: 2
+  GUARDIAN:
+    speed: 0.1
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: 'ENTITY_GUARDIAN_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_GUARDIAN_ATTACK'
+      damage: 2
+  HOGLIN:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_HOGLIN_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_HOGLIN_ATTACK'
+      damage: 2
+  HORSE:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_HORSE_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_HORSE_ANGRY'
+      damage: 2
+  HUSK:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_HUSK_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_HUSK_HURT'
+      damage: 2
+  ILLUSIONER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_ILLUSIONER_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_ILLUSIONER_CAST_SPELL'
+      damage: 2
+  IRON_GOLEM:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_IRON_GOLEM_STEP'
+    attack:
+      enabled: true
+      sound: 'ENTITY_IRON_GOLEM_ATTACK'
+      damage: 5
+  LLAMA:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_LLAMA_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_LLAMA_SPIT'
+      damage: 2
+  MAGMA_CUBE:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_MAGMA_CUBE_JUMP'
+    attack:
+      enabled: true
+      sound: 'ENTITY_MAGMA_CUBE_HURT'
+      damage: 2
+  MULE:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_MULE_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_MULE_ANGRY'
+      damage: 2
+  MUSHROOM_COW:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_COW_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_COW_HURT'
+      damage: 2
+  OCELOT:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_OCELOT_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_OCELOT_HURT'
+      damage: 2
+  PANDA:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_PANDA_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_PANDA_AGGRESSIVE_AMBIENT'
+      damage: 2
+  PARROT:
+    speed: 0.1
     fly: true
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_PARROT_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_PARROT_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
-  GHAST:
-    speed: 0.5
+  PHANTOM:
+    speed: 0.1
     fly: true
     drown: true
-    interact:
+    suffocate: false
+    action:
       enabled: true
-      sound: 'ENTITY_BAT_AMBIENT'
+      sound: 'ENTITY_PHANTOM_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_PHANTOM_HURT'
+      damage: 2
+  PIG:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_PIG_AMBIENT'
     attack:
       enabled: false
+      sound: 'ENTITY_PIG_HURT'
       damage: 2
-      sound: 'ENTITY_BAT_HURT'
-
-
-
-
-
-        - 'AXOLOTL'
-        - 'BAT'
-        - 'BEE'
-        - 'BLAZE'
-        - 'CAT'
-        - 'CAVE_SPIDER'
-        - 'CHICKEN'
-        - 'COD'
-        - 'COW'
-        - 'CREEPER'
-        - 'DOLPHIN'
-        - 'DONKEY'
-        - 'DROWNED'
-        - 'ELDER_GUARDIAN'
-        - 'ENDERMAN'
-        - 'ENDERMITE'
-        - 'ENDER_DRAGON'
-        - 'EVOKER'
-        - 'FOX'
-        - 'GHAST'
-        - 'GIANT'
-        - 'GLOW_SQUID'
-        - 'GOAT'
-        - 'GUARDIAN'
-        - 'HOGLIN'
-        - 'HORSE'
-        - 'HUSK'
-        - 'ILLUSIONER'
-        - 'IRON_GOLEM'
-        - 'LLAMA'
-        - 'MAGMA_CUBE'
-        - 'MULE'
-        - 'MUSHROOM_COW'
-        - 'OCELOT'
-        - 'PANDA'
-        - 'PARROT'
-        - 'PHANTOM'
-        - 'PIG'
-        - 'PIGLIN'
-        - 'PIGLIN_BRUTE'
-        - 'PILLAGER'
-        - 'PLAYER'
-        - 'POLAR_BEAR'
-        - 'PUFFERFISH'
-        - 'RABBIT'
-        - 'RAVAGER'
-        - 'SALMON'
-        - 'SHEEP'
-        - 'SHULKER'
-        - 'SILVERFISH'
-        - 'SKELETON'
-        - 'SKELETON_HORSE'
-        - 'SLIME'
-        - 'SNOWMAN'
-        - 'SPIDER'
-        - 'SQUID'
-        - 'STRAY'
-        - 'STRIDER'
-        - 'TRADER_LLAMA'
-        - 'TROPICAL_FISH'
-        - 'TURTLE'
-        - 'VEX'
-        - 'VILLAGER'
-        - 'VINDICATOR'
-        - 'WANDERING_TRADER'
-        - 'WITCH'
-        - 'WITHER'
-        - 'WITHER_SKELETON'
-        - 'WOLF'
-        - 'ZOGLIN'
-        - 'ZOMBIE'
-        - 'ZOMBIE_HORSE'
-        - 'ZOMBIE_VILLAGER'
-        - 'ZOMBIFIED_PIGLIN'
-
+  PIGLIN:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_PIGLIN_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_PIGLIN_ANGRY'
+      damage: 2
+  PIGLIN_BRUTE:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_PIGLIN_BRUTE_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_PIGLIN_BRUTE_ANGRY'
+      damage: 2
+  PILLAGER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_PILLAGER_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_PILLAGER_HURT'
+      damage: 2
+  PLAYER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: ''
+    attack:
+      enabled: true
+      sound: ''
+      damage: 2
+  POLAR_BEAR:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_POLAR_BEAR_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_POLAR_BEAR_WARNING'
+      damage: 2
+  PUFFERFISH:
+    speed: 0.1
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: ''
+    attack:
+      enabled: false
+      sound: ''
+      damage: 2
+  RABBIT:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_RABBIT_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_RABBIT_ATTACK'
+      damage: 2
+  RAVAGER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_RAVAGER_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_RAVAGER_ATTACK'
+      damage: 2
+  SALMON:
+    speed: 0.1
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: 'ENTITY_SALMON_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_SALMON_FLOP'
+      damage: 2
+  SHEEP:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_SHEEP_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_SHEEP_SHEAR'
+      damage: 2
+  SHULKER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_SHULKER_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_SHULKER_SHOOT'
+      damage: 2
+  SILVERFISH:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_SILVERFISH_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_SILVERFISH_HURT'
+      damage: 2
+  SKELETON:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_SKELETON_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_SKELETON_SHOOT'
+      damage: 2
+  SKELETON_HORSE:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_SKELETON_HORSE_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_SKELETON_HORSE_HURT'
+      damage: 2
+  SLIME:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_SLIME_SQUISH'
+    attack:
+      enabled: true
+      sound: 'ENTITY_SLIME_ATTACK'
+      damage: 2
+  SNOWMAN:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: ''
+    attack:
+      enabled: false
+      sound: ''
+      damage: 2
+  SPIDER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_SPIDER_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_SPIDER_HURT'
+      damage: 2
+  SQUID:
+    speed: 0.1
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: 'ENTITY_SQUID_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_SQUID_HURT'
+      damage: 2
+  STRAY:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_STRAY_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_STRAY_HURT'
+      damage: 2
+  STRIDER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_STRIDER_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_STRIDER_HURT'
+      damage: 2
+  TADPOLE:
+    speed: 0.1
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: 'ENTITY_TADPOLE_FLOP'
+    attack:
+      enabled: false
+      sound: 'ENTITY_TADPOLE_HURT'
+      damage: 2
+  TRADER_LLAMA:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_LLAMA_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_LLAMA_SPIT'
+      damage: 2
+  TROPICAL_FISH:
+    speed: 0.1
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: 'ENTITY_TROPICAL_FISH_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_TROPICAL_FISH_HURT'
+      damage: 2
+  TURTLE:
+    speed: 0.1
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: 'ENTITY_TURTLE_AMBIENT_LAND'
+    attack:
+      enabled: false
+      sound: 'ENTITY_TURTLE_HURT'
+      damage: 2
+  VEX:
+    speed: 0.1
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_VEX_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_VEX_HURT'
+      damage: 2
+  VILLAGER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_VILLAGER_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_VILLAGER_HURT'
+      damage: 2
+  VINDICATOR:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_VINDICATOR_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_VINDICATOR_HURT'
+      damage: 2
+  WANDERING_TRADER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_WANDERING_TRADER_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_WANDERING_TRADER_NO'
+      damage: 2
+  WARDEN:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_WARDEN_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_WARDEN_ATTACK_IMPACT'
+      damage: 2
+  WITCH:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_WITCH_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_WITCH_THROW'
+      damage: 2
+  WITHER:
+    speed: 0.1
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_WITHER_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_WITHER_SHOOT'
+      damage: 2
+  WITHER_SKELETON:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_WITHER_SKELETON_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_SKELETON_SHOOT'
+      damage: 2
+  WOLF:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_WOLF_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_WOLF_GROWL'
+      damage: 2
+  ZOGLIN:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_ZOGLIN_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_ZOGLIN_ATTACK'
+      damage: 2
+  ZOMBIE:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_ZOMBIE_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_ZOMBIE_HURT'
+      damage: 2
+  ZOMBIE_HORSE:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_ZOMBIE_HORSE_AMBIENT'
+    attack:
+      enabled: false
+      sound: 'ENTITY_ZOMBIE_HORSE_HURT'
+      damage: 2
+  ZOMBIE_VILLAGER:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_ZOMBIE_VILLAGER_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_ZOMBIE_VILLAGER_HURT'
+      damage: 2
+  ZOMBIFIED_PIGLIN:
+    speed: 0.1
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: 'ENTITY_ZOMBIFIED_PIGLIN_AMBIENT'
+    attack:
+      enabled: true
+      sound: 'ENTITY_ZOMBIFIED_PIGLIN_ANGRY'
+      damage: 2

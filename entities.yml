@@ -1,0 +1,1611 @@
+entity:
+  ALLAY:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM
+      - ENTITY_ALLAY_AMBIENT_WITH_ITEM
+      - ENTITY_ALLAY_DEATH
+      - ENTITY_ALLAY_HURT
+      - ENTITY_ALLAY_ITEM_GIVEN
+      - ENTITY_ALLAY_ITEM_TAKEN
+      - ENTITY_ALLAY_ITEM_THROWN
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  AXOLOTL:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_AXOLOTL_ATTACK
+      - ENTITY_AXOLOTL_DEATH
+      - ENTITY_AXOLOTL_HURT
+      - ENTITY_AXOLOTL_IDLE_AIR
+      - ENTITY_AXOLOTL_IDLE_WATER
+      - ENTITY_AXOLOTL_SPLASH
+      - ENTITY_AXOLOTL_SWIM
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  BAT:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_BAT_AMBIENT
+      - ENTITY_BAT_DEATH
+      - ENTITY_BAT_HURT
+      - ENTITY_BAT_LOOP
+      - ENTITY_BAT_TAKEOFF
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  BEE:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_BEE_DEATH
+      - ENTITY_BEE_HURT
+      - ENTITY_BEE_LOOP
+      - ENTITY_BEE_LOOP_AGGRESSIVE
+      - ENTITY_BEE_POLLINATE
+      - ENTITY_BEE_STING
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  BLAZE:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_BLAZE_AMBIENT
+      - ENTITY_BLAZE_BURN
+      - ENTITY_BLAZE_DEATH
+      - ENTITY_BLAZE_HURT
+      - ENTITY_BLAZE_SHOOT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  CAT:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_CAT_AMBIENT
+      - ENTITY_CAT_BEG_FOR_FOOD
+      - ENTITY_CAT_DEATH
+      - ENTITY_CAT_EAT
+      - ENTITY_CAT_HISS
+      - ENTITY_CAT_HURT
+      - ENTITY_CAT_PURR
+      - ENTITY_CAT_PURREOW
+      - ENTITY_CAT_STRAY_AMBIENT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  CAVE_SPIDER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound: []
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  CHICKEN:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_CHICKEN_AMBIENT
+      - ENTITY_CHICKEN_DEATH
+      - ENTITY_CHICKEN_EGG
+      - ENTITY_CHICKEN_HURT
+      - ENTITY_CHICKEN_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  COD:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_COD_AMBIENT
+      - ENTITY_COD_DEATH
+      - ENTITY_COD_FLOP
+      - ENTITY_COD_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  COW:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_COW_AMBIENT
+      - ENTITY_COW_DEATH
+      - ENTITY_COW_HURT
+      - ENTITY_COW_MILK
+      - ENTITY_COW_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  CREEPER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_CREEPER_DEATH
+      - ENTITY_CREEPER_HURT
+      - ENTITY_CREEPER_PRIMED
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  DOLPHIN:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_DOLPHIN_AMBIENT
+      - ENTITY_DOLPHIN_AMBIENT_WATER
+      - ENTITY_DOLPHIN_ATTACK
+      - ENTITY_DOLPHIN_DEATH
+      - ENTITY_DOLPHIN_EAT
+      - ENTITY_DOLPHIN_HURT
+      - ENTITY_DOLPHIN_JUMP
+      - ENTITY_DOLPHIN_PLAY
+      - ENTITY_DOLPHIN_SPLASH
+      - ENTITY_DOLPHIN_SWIM
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  DONKEY:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_DONKEY_AMBIENT
+      - ENTITY_DONKEY_ANGRY
+      - ENTITY_DONKEY_CHEST
+      - ENTITY_DONKEY_DEATH
+      - ENTITY_DONKEY_EAT
+      - ENTITY_DONKEY_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  DROWNED:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_DROWNED_AMBIENT
+      - ENTITY_DROWNED_AMBIENT_WATER
+      - ENTITY_DROWNED_DEATH
+      - ENTITY_DROWNED_DEATH_WATER
+      - ENTITY_DROWNED_HURT
+      - ENTITY_DROWNED_HURT_WATER
+      - ENTITY_DROWNED_SHOOT
+      - ENTITY_DROWNED_STEP
+      - ENTITY_DROWNED_SWIM
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ELDER_GUARDIAN:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ELDER_GUARDIAN_AMBIENT
+      - ENTITY_ELDER_GUARDIAN_AMBIENT_LAND
+      - ENTITY_ELDER_GUARDIAN_CURSE
+      - ENTITY_ELDER_GUARDIAN_DEATH
+      - ENTITY_ELDER_GUARDIAN_DEATH_LAND
+      - ENTITY_ELDER_GUARDIAN_FLOP
+      - ENTITY_ELDER_GUARDIAN_HURT
+      - ENTITY_ELDER_GUARDIAN_HURT_LAND
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ENDERMAN:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ENDERMAN_AMBIENT
+      - ENTITY_ENDERMAN_DEATH
+      - ENTITY_ENDERMAN_HURT
+      - ENTITY_ENDERMAN_SCREAM
+      - ENTITY_ENDERMAN_STARE
+      - ENTITY_ENDERMAN_TELEPORT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ENDERMITE:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ENDERMITE_AMBIENT
+      - ENTITY_ENDERMITE_DEATH
+      - ENTITY_ENDERMITE_HURT
+      - ENTITY_ENDERMITE_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ENDER_DRAGON:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ENDER_DRAGON_AMBIENT
+      - ENTITY_ENDER_DRAGON_DEATH
+      - ENTITY_ENDER_DRAGON_FLAP
+      - ENTITY_ENDER_DRAGON_GROWL
+      - ENTITY_ENDER_DRAGON_HURT
+      - ENTITY_ENDER_DRAGON_SHOOT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  EVOKER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_EVOKER_AMBIENT
+      - ENTITY_EVOKER_CAST_SPELL
+      - ENTITY_EVOKER_CELEBRATE
+      - ENTITY_EVOKER_DEATH
+      - ENTITY_EVOKER_FANGS_ATTACK
+      - ENTITY_EVOKER_HURT
+      - ENTITY_EVOKER_PREPARE_ATTACK
+      - ENTITY_EVOKER_PREPARE_SUMMON
+      - ENTITY_EVOKER_PREPARE_WOLOLO
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  FOX:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_FOX_AGGRO
+      - ENTITY_FOX_AMBIENT
+      - ENTITY_FOX_BITE
+      - ENTITY_FOX_DEATH
+      - ENTITY_FOX_EAT
+      - ENTITY_FOX_HURT
+      - ENTITY_FOX_SCREECH
+      - ENTITY_FOX_SLEEP
+      - ENTITY_FOX_SNIFF
+      - ENTITY_FOX_SPIT
+      - ENTITY_FOX_TELEPORT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  FROG:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_FROG_AMBIENT
+      - ENTITY_FROG_DEATH
+      - ENTITY_FROG_EAT
+      - ENTITY_FROG_HURT
+      - ENTITY_FROG_LAY_SPAWN
+      - ENTITY_FROG_LONG_JUMP
+      - ENTITY_FROG_STEP
+      - ENTITY_FROG_TONGUE
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  GHAST:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_GHAST_AMBIENT
+      - ENTITY_GHAST_DEATH
+      - ENTITY_GHAST_HURT
+      - ENTITY_GHAST_SCREAM
+      - ENTITY_GHAST_SHOOT
+      - ENTITY_GHAST_WARN
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  GIANT:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound: []
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  GLOW_SQUID:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_GLOW_SQUID_AMBIENT
+      - ENTITY_GLOW_SQUID_DEATH
+      - ENTITY_GLOW_SQUID_HURT
+      - ENTITY_GLOW_SQUID_SQUIRT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  GOAT:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_GOAT_AMBIENT
+      - ENTITY_GOAT_DEATH
+      - ENTITY_GOAT_EAT
+      - ENTITY_GOAT_HORN_BREAK
+      - ENTITY_GOAT_HURT
+      - ENTITY_GOAT_LONG_JUMP
+      - ENTITY_GOAT_MILK
+      - ENTITY_GOAT_PREPARE_RAM
+      - ENTITY_GOAT_RAM_IMPACT
+      - ENTITY_GOAT_SCREAMING_AMBIENT
+      - ENTITY_GOAT_SCREAMING_DEATH
+      - ENTITY_GOAT_SCREAMING_EAT
+      - ENTITY_GOAT_SCREAMING_HORN_BREAK
+      - ENTITY_GOAT_SCREAMING_HURT
+      - ENTITY_GOAT_SCREAMING_LONG_JUMP
+      - ENTITY_GOAT_SCREAMING_MILK
+      - ENTITY_GOAT_SCREAMING_PREPARE_RAM
+      - ENTITY_GOAT_SCREAMING_RAM_IMPACT
+      - ENTITY_GOAT_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  GUARDIAN:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_GUARDIAN_AMBIENT
+      - ENTITY_GUARDIAN_AMBIENT_LAND
+      - ENTITY_GUARDIAN_ATTACK
+      - ENTITY_GUARDIAN_DEATH
+      - ENTITY_GUARDIAN_DEATH_LAND
+      - ENTITY_GUARDIAN_FLOP
+      - ENTITY_GUARDIAN_HURT
+      - ENTITY_GUARDIAN_HURT_LAND
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  HOGLIN:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_HOGLIN_AMBIENT
+      - ENTITY_HOGLIN_ANGRY
+      - ENTITY_HOGLIN_ATTACK
+      - ENTITY_HOGLIN_CONVERTED_TO_ZOMBIFIED
+      - ENTITY_HOGLIN_DEATH
+      - ENTITY_HOGLIN_HURT
+      - ENTITY_HOGLIN_RETREAT
+      - ENTITY_HOGLIN_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  HORSE:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_HORSE_AMBIENT
+      - ENTITY_HORSE_ANGRY
+      - ENTITY_HORSE_ARMOR
+      - ENTITY_HORSE_BREATHE
+      - ENTITY_HORSE_DEATH
+      - ENTITY_HORSE_EAT
+      - ENTITY_HORSE_GALLOP
+      - ENTITY_HORSE_HURT
+      - ENTITY_HORSE_JUMP
+      - ENTITY_HORSE_LAND
+      - ENTITY_HORSE_SADDLE
+      - ENTITY_HORSE_STEP
+      - ENTITY_HORSE_STEP_WOOD
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  HUSK:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_HUSK_AMBIENT
+      - ENTITY_HUSK_CONVERTED_TO_ZOMBIE
+      - ENTITY_HUSK_DEATH
+      - ENTITY_HUSK_HURT
+      - ENTITY_HUSK_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ILLUSIONER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ILLUSIONER_AMBIENT
+      - ENTITY_ILLUSIONER_CAST_SPELL
+      - ENTITY_ILLUSIONER_DEATH
+      - ENTITY_ILLUSIONER_HURT
+      - ENTITY_ILLUSIONER_MIRROR_MOVE
+      - ENTITY_ILLUSIONER_PREPARE_BLINDNESS
+      - ENTITY_ILLUSIONER_PREPARE_MIRROR
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  IRON_GOLEM:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_IRON_GOLEM_ATTACK
+      - ENTITY_IRON_GOLEM_DAMAGE
+      - ENTITY_IRON_GOLEM_DEATH
+      - ENTITY_IRON_GOLEM_HURT
+      - ENTITY_IRON_GOLEM_REPAIR
+      - ENTITY_IRON_GOLEM_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  LLAMA:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_LLAMA_AMBIENT
+      - ENTITY_LLAMA_ANGRY
+      - ENTITY_LLAMA_CHEST
+      - ENTITY_LLAMA_DEATH
+      - ENTITY_LLAMA_EAT
+      - ENTITY_LLAMA_HURT
+      - ENTITY_LLAMA_SPIT
+      - ENTITY_LLAMA_STEP
+      - ENTITY_LLAMA_SWAG
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  MAGMA_CUBE:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_MAGMA_CUBE_DEATH
+      - ENTITY_MAGMA_CUBE_DEATH_SMALL
+      - ENTITY_MAGMA_CUBE_HURT
+      - ENTITY_MAGMA_CUBE_HURT_SMALL
+      - ENTITY_MAGMA_CUBE_JUMP
+      - ENTITY_MAGMA_CUBE_SQUISH
+      - ENTITY_MAGMA_CUBE_SQUISH_SMALL
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  MULE:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_MULE_AMBIENT
+      - ENTITY_MULE_ANGRY
+      - ENTITY_MULE_CHEST
+      - ENTITY_MULE_DEATH
+      - ENTITY_MULE_EAT
+      - ENTITY_MULE_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  MUSHROOM_COW:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound: []
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  OCELOT:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_OCELOT_AMBIENT
+      - ENTITY_OCELOT_DEATH
+      - ENTITY_OCELOT_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PANDA:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_PANDA_AGGRESSIVE_AMBIENT
+      - ENTITY_PANDA_AMBIENT
+      - ENTITY_PANDA_BITE
+      - ENTITY_PANDA_CANT_BREED
+      - ENTITY_PANDA_DEATH
+      - ENTITY_PANDA_EAT
+      - ENTITY_PANDA_HURT
+      - ENTITY_PANDA_PRE_SNEEZE
+      - ENTITY_PANDA_SNEEZE
+      - ENTITY_PANDA_STEP
+      - ENTITY_PANDA_WORRIED_AMBIENT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PARROT:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_PARROT_AMBIENT
+      - ENTITY_PARROT_DEATH
+      - ENTITY_PARROT_EAT
+      - ENTITY_PARROT_FLY
+      - ENTITY_PARROT_HURT
+      - ENTITY_PARROT_IMITATE_BLAZE
+      - ENTITY_PARROT_IMITATE_CREEPER
+      - ENTITY_PARROT_IMITATE_DROWNED
+      - ENTITY_PARROT_IMITATE_ELDER_GUARDIAN
+      - ENTITY_PARROT_IMITATE_ENDERMITE
+      - ENTITY_PARROT_IMITATE_ENDER_DRAGON
+      - ENTITY_PARROT_IMITATE_EVOKER
+      - ENTITY_PARROT_IMITATE_GHAST
+      - ENTITY_PARROT_IMITATE_GUARDIAN
+      - ENTITY_PARROT_IMITATE_HOGLIN
+      - ENTITY_PARROT_IMITATE_HUSK
+      - ENTITY_PARROT_IMITATE_ILLUSIONER
+      - ENTITY_PARROT_IMITATE_MAGMA_CUBE
+      - ENTITY_PARROT_IMITATE_PHANTOM
+      - ENTITY_PARROT_IMITATE_PIGLIN
+      - ENTITY_PARROT_IMITATE_PIGLIN_BRUTE
+      - ENTITY_PARROT_IMITATE_PILLAGER
+      - ENTITY_PARROT_IMITATE_RAVAGER
+      - ENTITY_PARROT_IMITATE_SHULKER
+      - ENTITY_PARROT_IMITATE_SILVERFISH
+      - ENTITY_PARROT_IMITATE_SKELETON
+      - ENTITY_PARROT_IMITATE_SLIME
+      - ENTITY_PARROT_IMITATE_SPIDER
+      - ENTITY_PARROT_IMITATE_STRAY
+      - ENTITY_PARROT_IMITATE_VEX
+      - ENTITY_PARROT_IMITATE_VINDICATOR
+      - ENTITY_PARROT_IMITATE_WARDEN
+      - ENTITY_PARROT_IMITATE_WITCH
+      - ENTITY_PARROT_IMITATE_WITHER
+      - ENTITY_PARROT_IMITATE_WITHER_SKELETON
+      - ENTITY_PARROT_IMITATE_ZOGLIN
+      - ENTITY_PARROT_IMITATE_ZOMBIE
+      - ENTITY_PARROT_IMITATE_ZOMBIE_VILLAGER
+      - ENTITY_PARROT_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PHANTOM:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_PHANTOM_AMBIENT
+      - ENTITY_PHANTOM_BITE
+      - ENTITY_PHANTOM_DEATH
+      - ENTITY_PHANTOM_FLAP
+      - ENTITY_PHANTOM_HURT
+      - ENTITY_PHANTOM_SWOOP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PIG:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_PIGLIN_ADMIRING_ITEM
+      - ENTITY_PIGLIN_AMBIENT
+      - ENTITY_PIGLIN_ANGRY
+      - ENTITY_PIGLIN_BRUTE_AMBIENT
+      - ENTITY_PIGLIN_BRUTE_ANGRY
+      - ENTITY_PIGLIN_BRUTE_CONVERTED_TO_ZOMBIFIED
+      - ENTITY_PIGLIN_BRUTE_DEATH
+      - ENTITY_PIGLIN_BRUTE_HURT
+      - ENTITY_PIGLIN_BRUTE_STEP
+      - ENTITY_PIGLIN_CELEBRATE
+      - ENTITY_PIGLIN_CONVERTED_TO_ZOMBIFIED
+      - ENTITY_PIGLIN_DEATH
+      - ENTITY_PIGLIN_HURT
+      - ENTITY_PIGLIN_JEALOUS
+      - ENTITY_PIGLIN_RETREAT
+      - ENTITY_PIGLIN_STEP
+      - ENTITY_PIG_AMBIENT
+      - ENTITY_PIG_DEATH
+      - ENTITY_PIG_HURT
+      - ENTITY_PIG_SADDLE
+      - ENTITY_PIG_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PIGLIN:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_PIGLIN_ADMIRING_ITEM
+      - ENTITY_PIGLIN_AMBIENT
+      - ENTITY_PIGLIN_ANGRY
+      - ENTITY_PIGLIN_BRUTE_AMBIENT
+      - ENTITY_PIGLIN_BRUTE_ANGRY
+      - ENTITY_PIGLIN_BRUTE_CONVERTED_TO_ZOMBIFIED
+      - ENTITY_PIGLIN_BRUTE_DEATH
+      - ENTITY_PIGLIN_BRUTE_HURT
+      - ENTITY_PIGLIN_BRUTE_STEP
+      - ENTITY_PIGLIN_CELEBRATE
+      - ENTITY_PIGLIN_CONVERTED_TO_ZOMBIFIED
+      - ENTITY_PIGLIN_DEATH
+      - ENTITY_PIGLIN_HURT
+      - ENTITY_PIGLIN_JEALOUS
+      - ENTITY_PIGLIN_RETREAT
+      - ENTITY_PIGLIN_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PIGLIN_BRUTE:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_PIGLIN_BRUTE_AMBIENT
+      - ENTITY_PIGLIN_BRUTE_ANGRY
+      - ENTITY_PIGLIN_BRUTE_CONVERTED_TO_ZOMBIFIED
+      - ENTITY_PIGLIN_BRUTE_DEATH
+      - ENTITY_PIGLIN_BRUTE_HURT
+      - ENTITY_PIGLIN_BRUTE_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PILLAGER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_PILLAGER_AMBIENT
+      - ENTITY_PILLAGER_CELEBRATE
+      - ENTITY_PILLAGER_DEATH
+      - ENTITY_PILLAGER_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PLAYER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_PLAYER_ATTACK_CRIT
+      - ENTITY_PLAYER_ATTACK_KNOCKBACK
+      - ENTITY_PLAYER_ATTACK_NODAMAGE
+      - ENTITY_PLAYER_ATTACK_STRONG
+      - ENTITY_PLAYER_ATTACK_SWEEP
+      - ENTITY_PLAYER_ATTACK_WEAK
+      - ENTITY_PLAYER_BIG_FALL
+      - ENTITY_PLAYER_BREATH
+      - ENTITY_PLAYER_BURP
+      - ENTITY_PLAYER_DEATH
+      - ENTITY_PLAYER_HURT
+      - ENTITY_PLAYER_HURT_DROWN
+      - ENTITY_PLAYER_HURT_FREEZE
+      - ENTITY_PLAYER_HURT_ON_FIRE
+      - ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH
+      - ENTITY_PLAYER_LEVELUP
+      - ENTITY_PLAYER_SMALL_FALL
+      - ENTITY_PLAYER_SPLASH
+      - ENTITY_PLAYER_SPLASH_HIGH_SPEED
+      - ENTITY_PLAYER_SWIM
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  POLAR_BEAR:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_POLAR_BEAR_AMBIENT
+      - ENTITY_POLAR_BEAR_AMBIENT_BABY
+      - ENTITY_POLAR_BEAR_DEATH
+      - ENTITY_POLAR_BEAR_HURT
+      - ENTITY_POLAR_BEAR_STEP
+      - ENTITY_POLAR_BEAR_WARNING
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  PUFFERFISH:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound: []
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  RABBIT:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_RABBIT_AMBIENT
+      - ENTITY_RABBIT_ATTACK
+      - ENTITY_RABBIT_DEATH
+      - ENTITY_RABBIT_HURT
+      - ENTITY_RABBIT_JUMP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  RAVAGER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_RAVAGER_AMBIENT
+      - ENTITY_RAVAGER_ATTACK
+      - ENTITY_RAVAGER_CELEBRATE
+      - ENTITY_RAVAGER_DEATH
+      - ENTITY_RAVAGER_HURT
+      - ENTITY_RAVAGER_ROAR
+      - ENTITY_RAVAGER_STEP
+      - ENTITY_RAVAGER_STUNNED
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SALMON:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SALMON_AMBIENT
+      - ENTITY_SALMON_DEATH
+      - ENTITY_SALMON_FLOP
+      - ENTITY_SALMON_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SHEEP:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SHEEP_AMBIENT
+      - ENTITY_SHEEP_DEATH
+      - ENTITY_SHEEP_HURT
+      - ENTITY_SHEEP_SHEAR
+      - ENTITY_SHEEP_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SHULKER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SHULKER_AMBIENT
+      - ENTITY_SHULKER_BULLET_HIT
+      - ENTITY_SHULKER_BULLET_HURT
+      - ENTITY_SHULKER_CLOSE
+      - ENTITY_SHULKER_DEATH
+      - ENTITY_SHULKER_HURT
+      - ENTITY_SHULKER_HURT_CLOSED
+      - ENTITY_SHULKER_OPEN
+      - ENTITY_SHULKER_SHOOT
+      - ENTITY_SHULKER_TELEPORT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SILVERFISH:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SILVERFISH_AMBIENT
+      - ENTITY_SILVERFISH_DEATH
+      - ENTITY_SILVERFISH_HURT
+      - ENTITY_SILVERFISH_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SKELETON:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SKELETON_AMBIENT
+      - ENTITY_SKELETON_CONVERTED_TO_STRAY
+      - ENTITY_SKELETON_DEATH
+      - ENTITY_SKELETON_HORSE_AMBIENT
+      - ENTITY_SKELETON_HORSE_AMBIENT_WATER
+      - ENTITY_SKELETON_HORSE_DEATH
+      - ENTITY_SKELETON_HORSE_GALLOP_WATER
+      - ENTITY_SKELETON_HORSE_HURT
+      - ENTITY_SKELETON_HORSE_JUMP_WATER
+      - ENTITY_SKELETON_HORSE_STEP_WATER
+      - ENTITY_SKELETON_HORSE_SWIM
+      - ENTITY_SKELETON_HURT
+      - ENTITY_SKELETON_SHOOT
+      - ENTITY_SKELETON_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SKELETON_HORSE:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SKELETON_HORSE_AMBIENT
+      - ENTITY_SKELETON_HORSE_AMBIENT_WATER
+      - ENTITY_SKELETON_HORSE_DEATH
+      - ENTITY_SKELETON_HORSE_GALLOP_WATER
+      - ENTITY_SKELETON_HORSE_HURT
+      - ENTITY_SKELETON_HORSE_JUMP_WATER
+      - ENTITY_SKELETON_HORSE_STEP_WATER
+      - ENTITY_SKELETON_HORSE_SWIM
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SLIME:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SLIME_ATTACK
+      - ENTITY_SLIME_DEATH
+      - ENTITY_SLIME_DEATH_SMALL
+      - ENTITY_SLIME_HURT
+      - ENTITY_SLIME_HURT_SMALL
+      - ENTITY_SLIME_JUMP
+      - ENTITY_SLIME_JUMP_SMALL
+      - ENTITY_SLIME_SQUISH
+      - ENTITY_SLIME_SQUISH_SMALL
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SNOWMAN:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound: []
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SPIDER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SPIDER_AMBIENT
+      - ENTITY_SPIDER_DEATH
+      - ENTITY_SPIDER_HURT
+      - ENTITY_SPIDER_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  SQUID:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_SQUID_AMBIENT
+      - ENTITY_SQUID_DEATH
+      - ENTITY_SQUID_HURT
+      - ENTITY_SQUID_SQUIRT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  STRAY:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_STRAY_AMBIENT
+      - ENTITY_STRAY_DEATH
+      - ENTITY_STRAY_HURT
+      - ENTITY_STRAY_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  STRIDER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_STRIDER_AMBIENT
+      - ENTITY_STRIDER_DEATH
+      - ENTITY_STRIDER_EAT
+      - ENTITY_STRIDER_HAPPY
+      - ENTITY_STRIDER_HURT
+      - ENTITY_STRIDER_RETREAT
+      - ENTITY_STRIDER_SADDLE
+      - ENTITY_STRIDER_STEP
+      - ENTITY_STRIDER_STEP_LAVA
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  TADPOLE:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_TADPOLE_DEATH
+      - ENTITY_TADPOLE_FLOP
+      - ENTITY_TADPOLE_GROW_UP
+      - ENTITY_TADPOLE_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  TRADER_LLAMA:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound: []
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  TROPICAL_FISH:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_TROPICAL_FISH_AMBIENT
+      - ENTITY_TROPICAL_FISH_DEATH
+      - ENTITY_TROPICAL_FISH_FLOP
+      - ENTITY_TROPICAL_FISH_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  TURTLE:
+    speed: 0.5
+    fly: false
+    drown: false
+    suffocate: true
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_TURTLE_AMBIENT_LAND
+      - ENTITY_TURTLE_DEATH
+      - ENTITY_TURTLE_DEATH_BABY
+      - ENTITY_TURTLE_EGG_BREAK
+      - ENTITY_TURTLE_EGG_CRACK
+      - ENTITY_TURTLE_EGG_HATCH
+      - ENTITY_TURTLE_HURT
+      - ENTITY_TURTLE_HURT_BABY
+      - ENTITY_TURTLE_LAY_EGG
+      - ENTITY_TURTLE_SHAMBLE
+      - ENTITY_TURTLE_SHAMBLE_BABY
+      - ENTITY_TURTLE_SWIM
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  VEX:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_VEX_AMBIENT
+      - ENTITY_VEX_CHARGE
+      - ENTITY_VEX_DEATH
+      - ENTITY_VEX_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  VILLAGER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_VILLAGER_AMBIENT
+      - ENTITY_VILLAGER_CELEBRATE
+      - ENTITY_VILLAGER_DEATH
+      - ENTITY_VILLAGER_HURT
+      - ENTITY_VILLAGER_NO
+      - ENTITY_VILLAGER_TRADE
+      - ENTITY_VILLAGER_WORK_ARMORER
+      - ENTITY_VILLAGER_WORK_BUTCHER
+      - ENTITY_VILLAGER_WORK_CARTOGRAPHER
+      - ENTITY_VILLAGER_WORK_CLERIC
+      - ENTITY_VILLAGER_WORK_FARMER
+      - ENTITY_VILLAGER_WORK_FISHERMAN
+      - ENTITY_VILLAGER_WORK_FLETCHER
+      - ENTITY_VILLAGER_WORK_LEATHERWORKER
+      - ENTITY_VILLAGER_WORK_LIBRARIAN
+      - ENTITY_VILLAGER_WORK_MASON
+      - ENTITY_VILLAGER_WORK_SHEPHERD
+      - ENTITY_VILLAGER_WORK_TOOLSMITH
+      - ENTITY_VILLAGER_WORK_WEAPONSMITH
+      - ENTITY_VILLAGER_YES
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  VINDICATOR:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_VINDICATOR_AMBIENT
+      - ENTITY_VINDICATOR_CELEBRATE
+      - ENTITY_VINDICATOR_DEATH
+      - ENTITY_VINDICATOR_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  WANDERING_TRADER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_WANDERING_TRADER_AMBIENT
+      - ENTITY_WANDERING_TRADER_DEATH
+      - ENTITY_WANDERING_TRADER_DISAPPEARED
+      - ENTITY_WANDERING_TRADER_DRINK_MILK
+      - ENTITY_WANDERING_TRADER_DRINK_POTION
+      - ENTITY_WANDERING_TRADER_HURT
+      - ENTITY_WANDERING_TRADER_NO
+      - ENTITY_WANDERING_TRADER_REAPPEARED
+      - ENTITY_WANDERING_TRADER_TRADE
+      - ENTITY_WANDERING_TRADER_YES
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  WARDEN:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_WARDEN_AGITATED
+      - ENTITY_WARDEN_AMBIENT
+      - ENTITY_WARDEN_ANGRY
+      - ENTITY_WARDEN_ATTACK_IMPACT
+      - ENTITY_WARDEN_DEATH
+      - ENTITY_WARDEN_DIG
+      - ENTITY_WARDEN_EMERGE
+      - ENTITY_WARDEN_HEARTBEAT
+      - ENTITY_WARDEN_HURT
+      - ENTITY_WARDEN_LISTENING
+      - ENTITY_WARDEN_LISTENING_ANGRY
+      - ENTITY_WARDEN_NEARBY_CLOSE
+      - ENTITY_WARDEN_NEARBY_CLOSER
+      - ENTITY_WARDEN_NEARBY_CLOSEST
+      - ENTITY_WARDEN_ROAR
+      - ENTITY_WARDEN_SNIFF
+      - ENTITY_WARDEN_SONIC_BOOM
+      - ENTITY_WARDEN_SONIC_CHARGE
+      - ENTITY_WARDEN_STEP
+      - ENTITY_WARDEN_TENDRIL_CLICKS
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  WITCH:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_WITCH_AMBIENT
+      - ENTITY_WITCH_CELEBRATE
+      - ENTITY_WITCH_DEATH
+      - ENTITY_WITCH_DRINK
+      - ENTITY_WITCH_HURT
+      - ENTITY_WITCH_THROW
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  WITHER:
+    speed: 0.5
+    fly: true
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_WITHER_AMBIENT
+      - ENTITY_WITHER_BREAK_BLOCK
+      - ENTITY_WITHER_DEATH
+      - ENTITY_WITHER_HURT
+      - ENTITY_WITHER_SHOOT
+      - ENTITY_WITHER_SKELETON_AMBIENT
+      - ENTITY_WITHER_SKELETON_DEATH
+      - ENTITY_WITHER_SKELETON_HURT
+      - ENTITY_WITHER_SKELETON_STEP
+      - ENTITY_WITHER_SPAWN
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  WITHER_SKELETON:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_WITHER_SKELETON_AMBIENT
+      - ENTITY_WITHER_SKELETON_DEATH
+      - ENTITY_WITHER_SKELETON_HURT
+      - ENTITY_WITHER_SKELETON_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  WOLF:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_WOLF_AMBIENT
+      - ENTITY_WOLF_DEATH
+      - ENTITY_WOLF_GROWL
+      - ENTITY_WOLF_HOWL
+      - ENTITY_WOLF_HURT
+      - ENTITY_WOLF_PANT
+      - ENTITY_WOLF_SHAKE
+      - ENTITY_WOLF_STEP
+      - ENTITY_WOLF_WHINE
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ZOGLIN:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ZOGLIN_AMBIENT
+      - ENTITY_ZOGLIN_ANGRY
+      - ENTITY_ZOGLIN_ATTACK
+      - ENTITY_ZOGLIN_DEATH
+      - ENTITY_ZOGLIN_HURT
+      - ENTITY_ZOGLIN_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ZOMBIE:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ZOMBIE_AMBIENT
+      - ENTITY_ZOMBIE_ATTACK_IRON_DOOR
+      - ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR
+      - ENTITY_ZOMBIE_BREAK_WOODEN_DOOR
+      - ENTITY_ZOMBIE_CONVERTED_TO_DROWNED
+      - ENTITY_ZOMBIE_DEATH
+      - ENTITY_ZOMBIE_DESTROY_EGG
+      - ENTITY_ZOMBIE_HORSE_AMBIENT
+      - ENTITY_ZOMBIE_HORSE_DEATH
+      - ENTITY_ZOMBIE_HORSE_HURT
+      - ENTITY_ZOMBIE_HURT
+      - ENTITY_ZOMBIE_INFECT
+      - ENTITY_ZOMBIE_STEP
+      - ENTITY_ZOMBIE_VILLAGER_AMBIENT
+      - ENTITY_ZOMBIE_VILLAGER_CONVERTED
+      - ENTITY_ZOMBIE_VILLAGER_CURE
+      - ENTITY_ZOMBIE_VILLAGER_DEATH
+      - ENTITY_ZOMBIE_VILLAGER_HURT
+      - ENTITY_ZOMBIE_VILLAGER_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ZOMBIE_HORSE:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ZOMBIE_HORSE_AMBIENT
+      - ENTITY_ZOMBIE_HORSE_DEATH
+      - ENTITY_ZOMBIE_HORSE_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ZOMBIE_VILLAGER:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ZOMBIE_VILLAGER_AMBIENT
+      - ENTITY_ZOMBIE_VILLAGER_CONVERTED
+      - ENTITY_ZOMBIE_VILLAGER_CURE
+      - ENTITY_ZOMBIE_VILLAGER_DEATH
+      - ENTITY_ZOMBIE_VILLAGER_HURT
+      - ENTITY_ZOMBIE_VILLAGER_STEP
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2
+  ZOMBIFIED_PIGLIN:
+    speed: 0.5
+    fly: false
+    drown: true
+    suffocate: false
+    action:
+      enabled: true
+      sound: '?'
+      potentialSound:
+      - ENTITY_ZOMBIFIED_PIGLIN_AMBIENT
+      - ENTITY_ZOMBIFIED_PIGLIN_ANGRY
+      - ENTITY_ZOMBIFIED_PIGLIN_DEATH
+      - ENTITY_ZOMBIFIED_PIGLIN_HURT
+    attack:
+      enabled: true
+      sound: '?'
+      damage: 2

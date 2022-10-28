@@ -19,9 +19,10 @@ public class MindControl extends JavaPlugin {
     private static MindControl plugin;
     private YamlConfiguration config;
     private final ControlListener controlListener = new ControlListener(this);
-    private PlayerHandler playerHandler = new PlayerHandler(this);
+    private ControllerHandler playerHandler = new ControllerHandler(this);
     //private SpectatorHandler spectatorHandler = new SpectatorHandler();
     private RecipeLoader recipeLoader;
+    private EntitiesLoader entitiesLoader;
     private CommandHandler commandHandler;
 
     private boolean usePerms;
@@ -66,6 +67,14 @@ public class MindControl extends JavaPlugin {
         }
         recipeLoader = new RecipeLoader(plugin);
 
+        //load up the entities file
+        File entityConfigFile = new File(getDataFolder(), "entities.yml");
+        if (!entityConfigFile.exists()) {
+            entityConfigFile.getParentFile().mkdirs();
+            this.copy(getResource("entities.yml"), entityConfigFile);
+        }
+        entitiesLoader = new EntitiesLoader(plugin);
+
         //load the chatConfig file
         File chatConfigFile = new File(getDataFolder(), "chatConfig.yml");
         if (!chatConfigFile.exists()) {
@@ -99,7 +108,7 @@ public class MindControl extends JavaPlugin {
         return commandAlias;
     }
 
-    public PlayerHandler getPlayerHandler(){
+    public ControllerHandler getPlayerHandler(){
         return playerHandler;
     }
 
